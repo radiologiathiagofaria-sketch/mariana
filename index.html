@@ -1,0 +1,2872 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra. Mariana Barreto Mamprim — Cardiologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Nunito+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0D1B2A;
+    --navy-mid: #162236;
+    --navy-light: #1E3250;
+    --gold: #B8962E;
+    --gold-light: #D4AF50;
+    --gold-pale: #F5EDD4;
+    --cream: #F7F3EE;
+    --white: #FFFFFF;
+    --gray-100: #F2F2F2;
+    --gray-200: #E5E5E5;
+    --gray-400: #9CA3AF;
+    --gray-600: #4B5563;
+    --gray-800: #1F2937;
+    --green: #2D7A5E;
+    --green-light: #E8F5F0;
+    --red: #C0392B;
+    --red-light: #FDECEA;
+    --amber: #D97706;
+    --amber-light: #FEF3C7;
+    --sidebar-w: 260px;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(13,27,42,0.10);
+    --shadow-sm: 0 2px 8px rgba(13,27,42,0.07);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito Sans', sans-serif;
+    background: var(--cream);
+    color: var(--gray-800);
+    min-height: 100vh;
+    display: flex;
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    width: var(--sidebar-w);
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    z-index: 100;
+  }
+
+  .sidebar-brand {
+    padding: 32px 24px 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .brand-cross {
+    width: 38px; height: 38px;
+    background: var(--gold);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .brand-cross svg { width: 22px; height: 22px; fill: var(--white); }
+
+  .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.3;
+    letter-spacing: 0.01em;
+  }
+  .brand-specialty {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--gold-light);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .sidebar-nav {
+    padding: 24px 16px;
+    flex: 1;
+  }
+
+  .nav-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.3);
+    padding: 0 8px;
+    margin-bottom: 8px;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-bottom: 2px;
+    color: rgba(255,255,255,0.6);
+    font-size: 14px;
+    font-weight: 500;
+  }
+  .nav-item:hover { background: rgba(255,255,255,0.06); color: var(--white); }
+  .nav-item.active { background: rgba(184,150,46,0.18); color: var(--gold-light); }
+  .nav-item.active .nav-icon { color: var(--gold); }
+
+  .nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+  .sidebar-footer {
+    padding: 20px 24px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .sidebar-date {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 500;
+    letter-spacing: 0.05em;
+  }
+  .sidebar-time {
+    font-size: 20px;
+    font-family: 'Cormorant Garamond', serif;
+    color: var(--white);
+    font-weight: 300;
+    margin-top: 2px;
+  }
+
+  /* ── MAIN CONTENT ── */
+  .main {
+    margin-left: var(--sidebar-w);
+    flex: 1;
+    padding: 0;
+    min-height: 100vh;
+  }
+
+  .topbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 36px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+
+  .topbar-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--navy);
+    letter-spacing: 0.01em;
+  }
+
+  .topbar-actions { display: flex; gap: 12px; align-items: center; }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    transition: all 0.2s;
+    font-family: 'Nunito Sans', sans-serif;
+  }
+  .btn-primary {
+    background: var(--navy);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: var(--navy-light); }
+  .btn-gold {
+    background: var(--gold);
+    color: var(--white);
+  }
+  .btn-gold:hover { background: var(--gold-light); }
+  .btn-outline {
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--gray-200);
+  }
+  .btn-outline:hover { border-color: var(--navy); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--gray-600);
+    padding: 9px 12px;
+  }
+  .btn-ghost:hover { background: var(--gray-100); }
+
+  .page { display: none; padding: 36px; }
+  .page.active { display: block; }
+
+  /* ── AGENDA ── */
+  .agenda-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 28px;
+  }
+  .agenda-date-display {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .agenda-date-sub {
+    font-size: 13px;
+    color: var(--gray-400);
+    font-weight: 500;
+    margin-top: 4px;
+    text-transform: capitalize;
+  }
+
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .stat-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px 22px;
+    box-shadow: var(--shadow-sm);
+    border-left: 4px solid transparent;
+  }
+  .stat-card.total { border-left-color: var(--navy); }
+  .stat-card.confirmed { border-left-color: var(--green); }
+  .stat-card.pending { border-left-color: var(--amber); }
+  .stat-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 6px; }
+  .stat-value { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; color: var(--navy); line-height: 1; }
+
+  .agenda-table-wrap {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  .agenda-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .agenda-table thead th {
+    background: var(--navy);
+    color: rgba(255,255,255,0.7);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 14px 20px;
+    text-align: left;
+  }
+  .agenda-table tbody tr {
+    border-bottom: 1px solid var(--gray-100);
+    transition: background 0.15s;
+  }
+  .agenda-table tbody tr:hover { background: var(--cream); }
+  .agenda-table tbody tr:last-child { border-bottom: none; }
+  .agenda-table td {
+    padding: 16px 20px;
+    font-size: 14px;
+  }
+
+  .patient-name-cell {
+    display: flex; align-items: center; gap: 12px;
+  }
+  .patient-avatar {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--navy-light);
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 500;
+    flex-shrink: 0;
+  }
+  .patient-name { font-weight: 600; color: var(--navy); }
+  .patient-type { font-size: 12px; color: var(--gray-400); margin-top: 1px; }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .badge-green { background: var(--green-light); color: var(--green); }
+  .badge-amber { background: var(--amber-light); color: var(--amber); }
+  .badge-red { background: var(--red-light); color: var(--red); }
+  .badge-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+
+  .row-actions { display: flex; gap: 8px; }
+  .icon-btn {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    border: 1.5px solid var(--gray-200);
+    background: transparent;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.15s;
+    color: var(--gray-600);
+  }
+  .icon-btn:hover { border-color: var(--navy); color: var(--navy); }
+  .icon-btn svg { width: 15px; height: 15px; }
+
+  /* ── PRONTUÁRIO ── */
+  .search-box {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 28px 32px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: 28px;
+  }
+  .search-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 16px;
+  }
+  .search-row { display: flex; gap: 12px; }
+  .input-wrap { flex: 1; position: relative; }
+  .input-icon { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--gray-400); }
+  .input-icon svg { width: 16px; height: 16px; }
+  .form-input {
+    width: 100%;
+    padding: 11px 14px 11px 42px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--gray-800);
+    outline: none;
+    transition: border 0.2s;
+  }
+  .form-input:focus { border-color: var(--navy); }
+  .form-input.no-icon { padding-left: 14px; }
+
+  .prontuario-form {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+  }
+
+  .form-section-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .form-section-header.gold { background: var(--gold); }
+  .form-section-header.navy-mid { background: var(--navy-mid); }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+  .section-icon { width: 18px; height: 18px; opacity: 0.85; }
+
+  .form-body { padding: 24px 28px; }
+
+  .form-grid {
+    display: grid;
+    gap: 16px;
+  }
+  .grid-2 { grid-template-columns: 1fr 1fr; }
+  .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .grid-4 { grid-template-columns: 1fr 1fr 1fr 1fr; }
+
+  .form-group { display: flex; flex-direction: column; gap: 5px; }
+  .form-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+  }
+  .form-control {
+    padding: 10px 12px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Nunito Sans', sans-serif;
+    color: var(--gray-800);
+    outline: none;
+    transition: border 0.2s;
+    background: var(--white);
+  }
+  .form-control:focus { border-color: var(--navy); }
+  textarea.form-control {
+    resize: vertical;
+    min-height: 88px;
+  }
+  .form-divider { height: 1px; background: var(--gray-100); margin: 8px 0; }
+
+  .comorbidades-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  .checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--gray-800);
+    padding: 8px 10px;
+    border-radius: 8px;
+    border: 1.5px solid var(--gray-200);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .checkbox-item:hover { border-color: var(--navy); }
+  .checkbox-item input[type="checkbox"] { accent-color: var(--navy); width: 15px; height: 15px; }
+  .checkbox-item.checked { background: rgba(13,27,42,0.04); border-color: var(--navy); }
+
+  .vitals-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+  }
+
+  .anamnese-section {
+    margin-bottom: 0;
+    border-top: 1px solid var(--gray-100);
+  }
+  .anamnese-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    cursor: pointer;
+    background: var(--cream);
+    transition: background 0.15s;
+  }
+  .anamnese-header:hover { background: var(--gold-pale); }
+  .anamnese-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .anamnese-label-dot {
+    width: 8px; height: 8px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+  .chevron { width: 16px; height: 16px; color: var(--gray-400); transition: transform 0.2s; }
+  .chevron.open { transform: rotate(180deg); }
+  .anamnese-content { padding: 20px 28px; display: none; }
+  .anamnese-content.open { display: block; }
+
+  .form-save-bar {
+    background: var(--white);
+    border-top: 1px solid var(--gray-200);
+    padding: 16px 28px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+    box-shadow: 0 -4px 16px rgba(13,27,42,0.06);
+  }
+
+  /* ── CASOS ESPECIAIS ── */
+  .casos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  .caso-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    border-top: 4px solid var(--gold);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .caso-card:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+  .caso-card-body { padding: 20px 22px; }
+  .caso-card-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .caso-card-detail { font-size: 12px; color: var(--gray-400); margin-bottom: 12px; font-weight: 500; }
+  .caso-card-note { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+  .caso-card-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 20px;
+    background: rgba(184,150,46,0.12);
+    color: var(--gold);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  /* ── MODAIS ── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(13,27,42,0.6);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 36px;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: 0 24px 64px rgba(13,27,42,0.25);
+    animation: modalIn 0.2s ease;
+  }
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(8px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .modal-icon {
+    width: 52px; height: 52px;
+    background: var(--gold-pale);
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 20px;
+  }
+  .modal-icon svg { width: 26px; height: 26px; color: var(--gold); }
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+  .modal-subtitle { font-size: 14px; color: var(--gray-600); line-height: 1.5; margin-bottom: 24px; }
+  .modal-actions { display: flex; gap: 12px; }
+  .modal-actions .btn { flex: 1; justify-content: center; }
+
+  /* ADD PATIENT MODAL */
+  .modal-form-grid { display: grid; gap: 14px; margin-bottom: 24px; }
+  .modal-form-grid .form-group { gap: 5px; }
+
+  /* PREVIOUS VISITS */
+  .prev-visit-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+  .prev-visit-item {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .prev-visit-item:hover { border-color: var(--navy); background: var(--cream); }
+  .prev-visit-date { font-weight: 700; font-size: 13px; color: var(--navy); }
+  .prev-visit-queixa { font-size: 12px; color: var(--gray-600); margin-top: 2px; }
+
+  /* Notification toast */
+  .toast {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    z-index: 9999;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 8px 24px rgba(13,27,42,0.3);
+    transform: translateY(80px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-icon { color: var(--gold-light); }
+  .toast-icon svg { width: 18px; height: 18px; }
+
+  /* ── EMPTY STATE ── */
+  .empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--gray-400);
+  }
+  .empty-state svg { width: 48px; height: 48px; margin-bottom: 16px; opacity: 0.4; }
+  .empty-state p { font-size: 14px; line-height: 1.6; }
+
+  /* Page transition */
+  .page { animation: fadeIn 0.25s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+
+  select.form-control { cursor: pointer; }
+
+  .prontuario-view { display: none; }
+  .prontuario-view.active { display: block; }
+
+  .back-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-600);
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 6px 0;
+    background: none;
+    border: none;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: color 0.15s;
+  }
+  .back-btn:hover { color: var(--navy); }
+  .back-btn svg { width: 16px; height: 16px; }
+
+  .patient-header-card {
+    background: var(--navy);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .patient-header-info { display: flex; align-items: center; gap: 18px; }
+  .patient-header-avatar {
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    background: var(--gold);
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .patient-header-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .patient-header-details {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 3px;
+    font-weight: 500;
+  }
+  .patient-header-badge {
+    background: rgba(184,150,46,0.25);
+    color: var(--gold-light);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .section-gap { margin-bottom: 16px; }
+
+  /* ── VACINAS ── */
+  .vacina-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .vacina-item {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .vacina-item:hover { border-color: var(--navy); }
+  .vacina-item.aplicada { border-color: var(--green); background: var(--green-light); }
+  .vacina-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .vacina-name input[type="checkbox"] { accent-color: var(--green); width: 15px; height: 15px; cursor: pointer; }
+  .vacina-fields { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 6px; }
+  .vacina-fields .form-label { font-size: 10px; }
+  .vacina-fields .form-control { padding: 6px 8px; font-size: 12px; }
+  .vacina-status {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--green);
+    display: none;
+    margin-top: 4px;
+  }
+  .vacina-item.aplicada .vacina-status { display: block; }
+
+  /* ── RECEITÁRIO ── */
+  .rx-builder {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .rx-builder-header {
+    background: var(--navy-mid);
+    color: var(--white);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .rx-header-left { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .rx-toggle {
+    display: flex;
+    gap: 0;
+    background: rgba(255,255,255,0.12);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .rx-toggle-btn {
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    color: rgba(255,255,255,0.6);
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .rx-toggle-btn.active { background: var(--gold); color: var(--white); }
+  .btn-manage-rx {
+    padding: 5px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 6px;
+    cursor: pointer;
+    background: transparent;
+    color: rgba(255,255,255,0.8);
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s;
+    display: flex; align-items: center; gap: 5px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .btn-manage-rx:hover { background: rgba(255,255,255,0.12); color: var(--white); }
+
+  .rx-categories {
+    padding: 14px 16px;
+    background: var(--cream);
+    border-bottom: 1px solid var(--gray-200);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .rx-cat-btn {
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    border: 1.5px solid var(--gray-200);
+    background: var(--white);
+    cursor: pointer;
+    color: var(--gray-600);
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.15s;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .rx-cat-btn:hover, .rx-cat-btn.active { border-color: var(--navy); background: var(--navy); color: var(--white); }
+
+  .rx-med-list {
+    padding: 12px 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    max-height: 280px;
+    overflow-y: auto;
+  }
+  .rx-med-item {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 10px 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+    background: var(--white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 6px;
+  }
+  .rx-med-item:hover { border-color: var(--gold); background: var(--gold-pale); }
+  .rx-med-item.selected { border-color: var(--green); background: var(--green-light); }
+  .rx-med-text { flex: 1; }
+  .rx-med-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .rx-med-dose { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+  .rx-med-posologia { font-size: 11px; color: var(--gray-600); margin-top: 2px; font-style: italic; }
+  .rx-add-icon {
+    width: 22px; height: 22px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700; line-height: 1;
+    margin-top: 1px;
+    transition: all 0.15s;
+  }
+  .rx-med-item.selected .rx-add-icon { background: var(--green); }
+
+  .rx-selected-list {
+    padding: 14px 16px;
+    border-top: 1px solid var(--gray-100);
+  }
+  .rx-selected-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-bottom: 10px;
+  }
+  .rx-selected-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 12px;
+    background: rgba(13,27,42,0.03);
+    border-radius: 8px;
+    margin-bottom: 6px;
+    border-left: 3px solid var(--gold);
+  }
+  .rx-selected-info { flex: 1; }
+  .rx-selected-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .rx-selected-detail { font-size: 11px; color: var(--gray-600); margin-top: 2px; }
+  .rx-remove-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--gray-400);
+    padding: 4px;
+    border-radius: 4px;
+    transition: color 0.15s;
+    font-size: 16px;
+    line-height: 1;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .rx-remove-btn:hover { color: var(--red); }
+
+  .rx-actions-bar {
+    padding: 12px 16px;
+    border-top: 1px solid var(--gray-100);
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .btn-green {
+    background: var(--green);
+    color: var(--white);
+  }
+  .btn-green:hover { background: #236148; }
+  .btn-rx-emitir {
+    background: var(--gold);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14px;
+    padding: 10px 22px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s;
+    box-shadow: 0 2px 8px rgba(184,150,46,0.25);
+  }
+  .btn-rx-emitir:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(184,150,46,0.35); }
+
+  /* ── MODAL RECEITUÁRIO VISUALIZAÇÃO ── */
+  #modalReceituario { z-index: 1200; }
+  .rx-print-wrap {
+    background: var(--white);
+    border-radius: 16px;
+    max-width: 680px;
+    width: 95%;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 64px rgba(13,27,42,0.3);
+    animation: modalIn 0.2s ease;
+  }
+  .rx-print-header {
+    background: var(--navy);
+    padding: 20px 32px;
+    color: var(--white);
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .rx-print-header-info {}
+  .rx-print-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
+  }
+  .rx-print-sub { font-size: 11px; color: rgba(255,255,255,0.55); }
+  .rx-print-close-btn {
+    background: rgba(255,255,255,0.1);
+    border: none; border-radius: 8px;
+    color: white; cursor: pointer;
+    width: 34px; height: 34px;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+    font-size: 20px; line-height: 1;
+    flex-shrink: 0;
+  }
+  .rx-print-close-btn:hover { background: rgba(255,255,255,0.2); }
+
+  /* The actual paper receipt preview */
+  .rx-paper {
+    margin: 24px 32px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    overflow: hidden;
+    background: var(--white);
+    box-shadow: 0 4px 16px rgba(13,27,42,0.07);
+  }
+  .rx-paper-top {
+    background: var(--navy);
+    padding: 20px 28px 16px;
+    color: var(--white);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+  .rx-paper-doctor-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+  .rx-paper-doctor-info { font-size: 11px; color: rgba(255,255,255,0.6); margin-top: 4px; line-height: 1.6; }
+  .rx-paper-logo {
+    width: 44px; height: 44px;
+    background: var(--gold);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .rx-paper-logo svg { width: 24px; height: 24px; fill: white; }
+  .rx-paper-gold-bar { height: 4px; background: var(--gold); }
+  .rx-paper-body { padding: 20px 28px 24px; }
+  .rx-paper-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1.5px solid var(--gray-100);
+  }
+  .rx-paper-receita-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .rx-paper-date { font-size: 12px; color: var(--gray-400); font-weight: 500; }
+  .rx-paper-patient-row {
+    background: var(--cream);
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 18px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
+  .rx-paper-patient-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); }
+  .rx-paper-patient-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .rx-paper-patient-info { font-size: 12px; color: var(--gray-600); margin-top: 1px; }
+  .rx-paper-meds { margin-bottom: 20px; }
+  .rx-paper-med {
+    display: flex;
+    gap: 12px;
+    padding: 11px 0;
+    border-bottom: 1px dashed var(--gray-200);
+  }
+  .rx-paper-med:last-child { border-bottom: none; }
+  .rx-paper-num {
+    width: 24px; height: 24px;
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700;
+    flex-shrink: 0; margin-top: 1px;
+  }
+  .rx-paper-med-name { font-size: 14px; font-weight: 700; color: var(--navy); }
+  .rx-paper-med-dose { font-size: 12px; color: var(--gray-400); font-weight: 600; margin-top: 1px; }
+  .rx-paper-med-posologia { font-size: 13px; color: var(--gray-600); margin-top: 3px; font-style: italic; }
+  .rx-paper-obs-section {
+    border-top: 1.5px solid var(--gray-200);
+    padding-top: 14px;
+    margin-top: 4px;
+  }
+  .rx-paper-obs-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-400); margin-bottom: 6px; }
+  .rx-paper-obs textarea {
+    width: 100%;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 13px;
+    color: var(--gray-800);
+    outline: none;
+    resize: vertical;
+    min-height: 60px;
+    background: var(--white);
+  }
+  .rx-paper-obs textarea:focus { border-color: var(--navy); }
+  .rx-paper-sig {
+    margin-top: 28px;
+    display: flex;
+    justify-content: flex-end;
+  }
+  .rx-paper-sig-inner {
+    text-align: center;
+    min-width: 200px;
+    border-top: 1.5px solid var(--navy);
+    padding-top: 8px;
+  }
+  .rx-paper-sig-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--navy);
+  }
+  .rx-paper-sig-crm { font-size: 11px; color: var(--gray-400); margin-top: 2px; }
+  .rx-print-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 14px 32px 20px;
+  }
+
+  /* ── MODAL GERENCIAR MEDICAMENTOS ── */
+  #modalGerenciarMeds { z-index: 1300; }
+  .manage-meds-wrap {
+    background: var(--white);
+    border-radius: 16px;
+    max-width: 760px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 64px rgba(13,27,42,0.3);
+    animation: modalIn 0.2s ease;
+  }
+  .manage-meds-header {
+    background: var(--navy);
+    padding: 20px 28px;
+    color: var(--white);
+    border-radius: 16px 16px 0 0;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .manage-meds-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 500;
+  }
+  .manage-meds-body { padding: 24px 28px; }
+  .manage-meds-add {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 18px 20px;
+    margin-bottom: 20px;
+  }
+  .manage-meds-add-title {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--gold); margin-bottom: 14px;
+  }
+  .manage-meds-form { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .manage-meds-form .col-full { grid-column: 1 / -1; }
+  .manage-meds-list { display: flex; flex-direction: column; gap: 8px; }
+  .manage-med-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    background: var(--white);
+    transition: border-color 0.15s;
+  }
+  .manage-med-row:hover { border-color: var(--navy-light); }
+  .manage-med-cat-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0;
+  }
+  .manage-med-info { flex: 1; }
+  .manage-med-name { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .manage-med-sub { font-size: 11px; color: var(--gray-400); margin-top: 1px; }
+  .manage-med-del {
+    background: none; border: none; cursor: pointer;
+    color: var(--gray-400); padding: 4px; border-radius: 4px;
+    transition: color 0.15s; font-size: 18px; line-height: 1;
+    display: flex; align-items: center;
+  }
+  .manage-med-del:hover { color: var(--red); }
+  .manage-meds-footer {
+    display: flex; justify-content: flex-end; gap: 10px;
+    padding: 14px 28px 20px;
+    border-top: 1px solid var(--gray-100);
+  }
+
+  @media print {
+    .sidebar, .topbar, .back-btn, .form-save-bar, .rx-actions-bar,
+    .rx-print-footer, .rx-print-header, .rx-builder-header, .rx-categories, .rx-med-list,
+    .rx-selected-list, nav, button { display: none !important; }
+    .rx-print-wrap { box-shadow: none; border-radius: 0; max-height: none; }
+    .rx-paper { border: none; box-shadow: none; margin: 0; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SIDEBAR -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand-cross">
+      <svg viewBox="0 0 24 24"><path d="M10 2h4v8h8v4h-8v8h-4v-8H2v-4h8z"/></svg>
+    </div>
+    <div class="brand-name">Dra. Mariana Barreto<br>Mamprim</div>
+    <div class="brand-specialty">Cardiologia</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-label">Menu Principal</div>
+    <div class="nav-item active" onclick="navigate('agenda')">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Agenda
+    </div>
+    <div class="nav-item" onclick="navigate('prontuario')">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+      Prontuário
+    </div>
+    <div class="nav-item" onclick="navigate('casos')">
+      <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Casos Especiais
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="sidebar-date" id="sidebarDate">—</div>
+    <div class="sidebar-time" id="sidebarTime">—</div>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title" id="topbarTitle">Agenda do Dia</div>
+    <div class="topbar-actions">
+      <button class="btn btn-outline" id="topbarBtn2" onclick="topbarAction2()" style="display:none"></button>
+      <button class="btn btn-gold" id="topbarBtn" onclick="topbarAction()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Adicionar Paciente
+      </button>
+    </div>
+  </div>
+
+  <!-- ══ AGENDA PAGE ══ -->
+  <div class="page active" id="page-agenda">
+    <div class="agenda-header">
+      <div>
+        <div class="agenda-date-display" id="agendaDateDisplay">—</div>
+        <div class="agenda-date-sub" id="agendaDateSub">—</div>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card total">
+        <div class="stat-label">Total de Consultas</div>
+        <div class="stat-value" id="statTotal">0</div>
+      </div>
+      <div class="stat-card confirmed">
+        <div class="stat-label">Confirmadas</div>
+        <div class="stat-value" id="statConfirmed">0</div>
+      </div>
+      <div class="stat-card pending">
+        <div class="stat-label">Pendentes</div>
+        <div class="stat-value" id="statPending">0</div>
+      </div>
+    </div>
+
+    <div class="agenda-table-wrap">
+      <table class="agenda-table">
+        <thead>
+          <tr>
+            <th>Paciente</th>
+            <th>Horário</th>
+            <th>Telefone</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="agendaTableBody">
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══ PRONTUÁRIO PAGE ══ -->
+  <div class="page" id="page-prontuario">
+
+    <!-- SEARCH VIEW -->
+    <div class="prontuario-view active" id="view-search">
+      <div class="search-box">
+        <div class="search-title">Buscar Paciente</div>
+        <div class="search-row">
+          <div class="input-wrap">
+            <span class="input-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+            <input type="text" class="form-input" id="patientSearchInput" placeholder="Buscar por nome ou CPF..." oninput="filterPatients()">
+          </div>
+          <button class="btn btn-primary" onclick="openAddPatient()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Novo Paciente
+          </button>
+        </div>
+      </div>
+
+      <div id="patientSearchResults"></div>
+    </div>
+
+    <!-- FORM VIEW -->
+    <div class="prontuario-view" id="view-form">
+      <button class="back-btn" onclick="backToSearch()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Voltar à Busca
+      </button>
+
+      <!-- Patient Header -->
+      <div class="patient-header-card" id="formPatientHeader"></div>
+
+      <div class="prontuario-form">
+
+        <!-- DADOS DO PACIENTE -->
+        <div class="form-section-header">
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          <span class="section-title">Dados do Paciente</span>
+        </div>
+        <div class="form-body">
+          <div class="form-grid grid-3 section-gap">
+            <div class="form-group">
+              <label class="form-label">Nome Completo</label>
+              <input type="text" class="form-control" id="f_nome">
+            </div>
+            <div class="form-group">
+              <label class="form-label">CPF</label>
+              <input type="text" class="form-control" id="f_cpf" placeholder="000.000.000-00">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Data de Nascimento</label>
+              <input type="date" class="form-control" id="f_nascimento" onchange="calcAge()">
+            </div>
+          </div>
+          <div class="form-grid grid-4">
+            <div class="form-group">
+              <label class="form-label">Idade</label>
+              <input type="text" class="form-control" id="f_idade" readonly>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Sexo</label>
+              <select class="form-control" id="f_sexo">
+                <option value="">Selecione</option>
+                <option>Feminino</option>
+                <option>Masculino</option>
+                <option>Outro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Convênio</label>
+              <input type="text" class="form-control" id="f_convenio" placeholder="Ex: Unimed">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Data da Consulta</label>
+              <input type="date" class="form-control" id="f_dataConsulta">
+            </div>
+          </div>
+          <div class="form-grid grid-3" style="margin-top:16px">
+            <div class="form-group">
+              <label class="form-label">Telefone</label>
+              <input type="text" class="form-control" id="f_telefone" placeholder="(00) 00000-0000">
+            </div>
+            <div class="form-group">
+              <label class="form-label">E-mail</label>
+              <input type="email" class="form-control" id="f_email">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Profissão</label>
+              <input type="text" class="form-control" id="f_profissao">
+            </div>
+          </div>
+        </div>
+
+        <!-- COMORBIDADES -->
+        <div class="form-section-header navy-mid">
+          <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span class="section-title">Comorbidades</span>
+        </div>
+        <div class="form-body">
+          <div class="comorbidades-grid section-gap" id="comorbGrid">
+            <label class="checkbox-item"><input type="checkbox" value="HAS"> Hipertensão (HAS)</label>
+            <label class="checkbox-item"><input type="checkbox" value="DM"> Diabetes Mellitus</label>
+            <label class="checkbox-item"><input type="checkbox" value="DRC"> Doença Renal Crônica</label>
+            <label class="checkbox-item"><input type="checkbox" value="Obesidade"> Obesidade</label>
+            <label class="checkbox-item"><input type="checkbox" value="DAC"> Doença Arterial Coronariana</label>
+            <label class="checkbox-item"><input type="checkbox" value="ICC"> Insuficiência Cardíaca</label>
+            <label class="checkbox-item"><input type="checkbox" value="FA"> Fibrilação Atrial</label>
+            <label class="checkbox-item"><input type="checkbox" value="Dislipidemia"> Dislipidemia</label>
+            <label class="checkbox-item"><input type="checkbox" value="AVC"> AVC / AIT Prévio</label>
+            <label class="checkbox-item"><input type="checkbox" value="DPOC"> DPOC / Asma</label>
+            <label class="checkbox-item"><input type="checkbox" value="Hipotireoidismo"> Hipotireoidismo</label>
+            <label class="checkbox-item"><input type="checkbox" value="TVP"> TVP / TEP Prévio</label>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Outras Comorbidades</label>
+            <input type="text" class="form-control no-icon" id="f_outrasComorbidades" placeholder="Descreva outras condições...">
+          </div>
+        </div>
+
+        <!-- MEDICAMENTOS EM USO -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 💊 Medicamentos em Uso</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content open">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Liste os medicamentos, doses e frequência</label>
+                <textarea class="form-control" id="f_medicamentos" placeholder="Ex: Losartana 50mg — 1x ao dia&#10;Metformina 850mg — 2x ao dia&#10;..."></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUEIXA PRINCIPAL -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 🔍 Queixa Principal</span>
+            <svg class="chevron open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content open">
+            <div class="form-group">
+              <label class="form-label">Queixa Principal</label>
+              <textarea class="form-control" id="f_queixa" placeholder="Descreva a queixa principal do paciente..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- HISTÓRIA DA DOENÇA ATUAL -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 📋 História da Doença Atual</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+            <div class="form-group">
+              <label class="form-label">Descrição Detalhada</label>
+              <textarea class="form-control" id="f_hda" rows="5" placeholder="Descreva a história da doença atual, início dos sintomas, evolução, fatores agravantes e atenuantes..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXAME FÍSICO -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 🩺 Exame Físico</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+            <div class="form-grid" style="margin-bottom:16px">
+              <label class="form-label" style="margin-bottom:8px">Dados Vitais</label>
+              <div class="vitals-grid">
+                <div class="form-group">
+                  <label class="form-label">PA (mmHg)</label>
+                  <input type="text" class="form-control" id="f_pa" placeholder="120/80">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">FC (bpm)</label>
+                  <input type="number" class="form-control" id="f_fc" placeholder="72">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">FR (irpm)</label>
+                  <input type="number" class="form-control" id="f_fr" placeholder="16">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">SpO₂ (%)</label>
+                  <input type="number" class="form-control" id="f_spo2" placeholder="98">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Temp. (°C)</label>
+                  <input type="number" class="form-control" id="f_temp" placeholder="36.5" step="0.1">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Peso (kg)</label>
+                  <input type="number" class="form-control" id="f_peso" placeholder="70" oninput="calcIMC()">
+                </div>
+              </div>
+              <div class="vitals-grid" style="margin-top:12px">
+                <div class="form-group">
+                  <label class="form-label">Altura (cm)</label>
+                  <input type="number" class="form-control" id="f_altura" placeholder="170" oninput="calcIMC()">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">IMC</label>
+                  <input type="text" class="form-control" id="f_imc" readonly placeholder="—">
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Classif. IMC</label>
+                  <input type="text" class="form-control" id="f_imcClass" readonly placeholder="—">
+                </div>
+              </div>
+            </div>
+            <div class="form-divider"></div>
+            <div class="form-grid grid-2" style="margin-top:14px">
+              <div class="form-group">
+                <label class="form-label">Ausculta Cardíaca</label>
+                <textarea class="form-control" id="f_ausultaC" placeholder="Ritmo, bulhas, sopros..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ausculta Pulmonar</label>
+                <textarea class="form-control" id="f_ausultaP" placeholder="Murmúrio vesicular, ruídos adventícios..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Abdome</label>
+                <textarea class="form-control" id="f_abdome" placeholder="Flácido, doloroso, hepatomegalia..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Extremidades / MMII</label>
+                <textarea class="form-control" id="f_mmii" placeholder="Edema, pulsos periféricos, varizes..."></textarea>
+              </div>
+            </div>
+            <div class="form-group" style="margin-top:14px">
+              <label class="form-label">Observações Adicionais do Exame Físico</label>
+              <textarea class="form-control" id="f_efObs"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXAMES LABORATORIAIS / COMPLEMENTARES -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 🔬 Exames Laboratoriais e Complementares</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+            <div class="form-grid grid-3" style="margin-bottom:14px">
+              <div class="form-group"><label class="form-label">Hemograma</label><input type="text" class="form-control" id="f_hemograma"></div>
+              <div class="form-group"><label class="form-label">Glicemia Jejum</label><input type="text" class="form-control" id="f_glicemia" placeholder="mg/dL"></div>
+              <div class="form-group"><label class="form-label">HbA1c</label><input type="text" class="form-control" id="f_hba1c" placeholder="%"></div>
+              <div class="form-group"><label class="form-label">Colesterol Total</label><input type="text" class="form-control" id="f_colTotal" placeholder="mg/dL"></div>
+              <div class="form-group"><label class="form-label">LDL</label><input type="text" class="form-control" id="f_ldl" placeholder="mg/dL"></div>
+              <div class="form-group"><label class="form-label">HDL</label><input type="text" class="form-control" id="f_hdl" placeholder="mg/dL"></div>
+              <div class="form-group"><label class="form-label">Triglicerídeos</label><input type="text" class="form-control" id="f_tg" placeholder="mg/dL"></div>
+              <div class="form-group"><label class="form-label">Creatinina</label><input type="text" class="form-control" id="f_creatinina" placeholder="mg/dL"></div>
+              <div class="form-group"><label class="form-label">TGO / TGP</label><input type="text" class="form-control" id="f_transaminases" placeholder="U/L"></div>
+              <div class="form-group"><label class="form-label">TSH</label><input type="text" class="form-control" id="f_tsh" placeholder="mUI/L"></div>
+              <div class="form-group"><label class="form-label">BNP / NT-proBNP</label><input type="text" class="form-control" id="f_bnp"></div>
+              <div class="form-group"><label class="form-label">Troponina</label><input type="text" class="form-control" id="f_troponina"></div>
+            </div>
+            <div class="form-grid grid-2">
+              <div class="form-group">
+                <label class="form-label">ECG</label>
+                <textarea class="form-control" id="f_ecg" placeholder="Ritmo, eixo, alterações..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Ecocardiograma</label>
+                <textarea class="form-control" id="f_eco" placeholder="FEVE, disfunções, valvopatias..."></textarea>
+              </div>
+            </div>
+            <div class="form-group" style="margin-top:14px">
+              <label class="form-label">Outros Exames / Resultados</label>
+              <textarea class="form-control" id="f_outrosExames"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- HÁBITOS E VÍCIOS -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 🚬 Hábitos e Vícios</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+            <div class="form-grid grid-2">
+              <div class="form-group">
+                <label class="form-label">Tabagismo</label>
+                <select class="form-control" id="f_tabagismo">
+                  <option value="">Selecione</option>
+                  <option>Não fumante</option>
+                  <option>Ex-fumante</option>
+                  <option>Fumante ativo</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Carga Tabágica (maços-ano)</label>
+                <input type="text" class="form-control" id="f_cargaTabagica" placeholder="Ex: 20 anos-maço">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Etilismo</label>
+                <select class="form-control" id="f_etilismo">
+                  <option value="">Selecione</option>
+                  <option>Não bebe</option>
+                  <option>Eventual / Social</option>
+                  <option>Frequente</option>
+                  <option>Dependência alcoólica</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Atividade Física</label>
+                <select class="form-control" id="f_atividadeFisica">
+                  <option value="">Selecione</option>
+                  <option>Sedentário</option>
+                  <option>Leve (&lt;150 min/sem)</option>
+                  <option>Moderada (150-300 min/sem)</option>
+                  <option>Intensa (&gt;300 min/sem)</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Dieta</label>
+                <input type="text" class="form-control" id="f_dieta" placeholder="Ex: saudável, rica em sódio, vegetariana...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Uso de Drogas Ilícitas</label>
+                <input type="text" class="form-control" id="f_drogas" placeholder="Descreva se houver">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- HISTÓRIA FAMILIAR -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 👪 História Familiar</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+            <div class="form-group">
+              <label class="form-label">Antecedentes Familiares Relevantes</label>
+              <textarea class="form-control" id="f_historiaFamiliar" placeholder="Ex: pai com IAM aos 55 anos, mãe com HAS e DM, irmão com morte súbita..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- ANTECEDENTES PESSOAIS -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 🏥 Antecedentes Pessoais</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+            <div class="form-grid grid-2">
+              <div class="form-group">
+                <label class="form-label">Cirurgias / Procedimentos Prévios</label>
+                <textarea class="form-control" id="f_cirurgias" placeholder="Ex: angioplastia 2019, colecistectomia 2015..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Internações</label>
+                <textarea class="form-control" id="f_internacoes" placeholder="Motivo e data das internações..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Alergias</label>
+                <input type="text" class="form-control" id="f_alergias" placeholder="Ex: AAS, contraste iodado, penicilina...">
+              </div>
+              <div class="form-group">
+                <label class="form-label">Outras Observações</label>
+                <input type="text" class="form-control" id="f_antObs">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARTÃO VACINAL -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 💉 Cartão Vacinal</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+            <div class="vacina-grid" id="vacinaGrid">
+
+              <div class="vacina-item" id="vac_influenza">
+                <div class="vacina-name">
+                  <input type="checkbox" onchange="toggleVacina('influenza')" id="vcheck_influenza"> Influenza (Gripe)
+                </div>
+                <div class="vacina-fields">
+                  <div class="form-group">
+                    <label class="form-label">Data</label>
+                    <input type="date" class="form-control" id="vdata_influenza">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Próx. dose</label>
+                    <input type="date" class="form-control" id="vprox_influenza">
+                  </div>
+                </div>
+                <div class="vacina-status">✓ Registrada</div>
+              </div>
+
+              <div class="vacina-item" id="vac_covid">
+                <div class="vacina-name">
+                  <input type="checkbox" onchange="toggleVacina('covid')" id="vcheck_covid"> COVID-19
+                </div>
+                <div class="vacina-fields">
+                  <div class="form-group">
+                    <label class="form-label">Última dose</label>
+                    <input type="date" class="form-control" id="vdata_covid">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Nº de doses</label>
+                    <input type="number" class="form-control" id="vdoses_covid" min="1" max="6" placeholder="—">
+                  </div>
+                </div>
+                <div class="vacina-status">✓ Registrada</div>
+              </div>
+
+              <div class="vacina-item" id="vac_pneumo23">
+                <div class="vacina-name">
+                  <input type="checkbox" onchange="toggleVacina('pneumo23')" id="vcheck_pneumo23"> Pneumocócica 23V
+                </div>
+                <div class="vacina-fields">
+                  <div class="form-group">
+                    <label class="form-label">Data</label>
+                    <input type="date" class="form-control" id="vdata_pneumo23">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Reforço</label>
+                    <input type="date" class="form-control" id="vprox_pneumo23">
+                  </div>
+                </div>
+                <div class="vacina-status">✓ Registrada</div>
+              </div>
+
+              <div class="vacina-item" id="vac_pneumo13">
+                <div class="vacina-name">
+                  <input type="checkbox" onchange="toggleVacina('pneumo13')" id="vcheck_pneumo13"> Pneumocócica 13V (PCV13)
+                </div>
+                <div class="vacina-fields">
+                  <div class="form-group">
+                    <label class="form-label">Data</label>
+                    <input type="date" class="form-control" id="vdata_pneumo13">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Lote</label>
+                    <input type="text" class="form-control" id="vlote_pneumo13" placeholder="—">
+                  </div>
+                </div>
+                <div class="vacina-status">✓ Registrada</div>
+              </div>
+
+              <div class="vacina-item" id="vac_tetano">
+                <div class="vacina-name">
+                  <input type="checkbox" onchange="toggleVacina('tetano')" id="vcheck_tetano"> Tétano / dT / dTpa
+                </div>
+                <div class="vacina-fields">
+                  <div class="form-group">
+                    <label class="form-label">Data</label>
+                    <input type="date" class="form-control" id="vdata_tetano">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Próx. reforço</label>
+                    <input type="date" class="form-control" id="vprox_tetano">
+                  </div>
+                </div>
+                <div class="vacina-status">✓ Registrada</div>
+              </div>
+
+              <div class="vacina-item" id="vac_hepb">
+                <div class="vacina-name">
+                  <input type="checkbox" onchange="toggleVacina('hepb')" id="vcheck_hepb"> Hepatite B
+                </div>
+                <div class="vacina-fields">
+                  <div class="form-group">
+                    <label class="form-label">Última dose</label>
+                    <input type="date" class="form-control" id="vdata_hepb">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Nº de doses</label>
+                    <input type="number" class="form-control" id="vdoses_hepb" min="1" max="3" placeholder="—">
+                  </div>
+                </div>
+                <div class="vacina-status">✓ Registrada</div>
+              </div>
+
+              <div class="vacina-item" id="vac_herpes">
+                <div class="vacina-name">
+                  <input type="checkbox" onchange="toggleVacina('herpes')" id="vcheck_herpes"> Herpes Zóster (Shingrix)
+                </div>
+                <div class="vacina-fields">
+                  <div class="form-group">
+                    <label class="form-label">1ª dose</label>
+                    <input type="date" class="form-control" id="vdata_herpes">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">2ª dose</label>
+                    <input type="date" class="form-control" id="vdose2_herpes">
+                  </div>
+                </div>
+                <div class="vacina-status">✓ Registrada</div>
+              </div>
+
+              <div class="vacina-item" id="vac_febreAma">
+                <div class="vacina-name">
+                  <input type="checkbox" onchange="toggleVacina('febreAma')" id="vcheck_febreAma"> Febre Amarela
+                </div>
+                <div class="vacina-fields">
+                  <div class="form-group">
+                    <label class="form-label">Data</label>
+                    <input type="date" class="form-control" id="vdata_febreAma">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Dose única</label>
+                    <select class="form-control" id="vdoseU_febreAma">
+                      <option value="">—</option>
+                      <option>Sim</option>
+                      <option>Reforço</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="vacina-status">✓ Registrada</div>
+              </div>
+
+              <div class="vacina-item" id="vac_hpv">
+                <div class="vacina-name">
+                  <input type="checkbox" onchange="toggleVacina('hpv')" id="vcheck_hpv"> HPV
+                </div>
+                <div class="vacina-fields">
+                  <div class="form-group">
+                    <label class="form-label">Data</label>
+                    <input type="date" class="form-control" id="vdata_hpv">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Nº de doses</label>
+                    <input type="number" class="form-control" id="vdoses_hpv" min="1" max="3" placeholder="—">
+                  </div>
+                </div>
+                <div class="vacina-status">✓ Registrada</div>
+              </div>
+
+            </div>
+            <div class="form-group">
+              <label class="form-label">Observações Vacinais</label>
+              <textarea class="form-control" id="f_vacinaObs" placeholder="Vacinas pendentes, restrições, histórico adicional..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- HIPÓTESE DIAGNÓSTICA -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 🎯 Hipótese Diagnóstica</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+            <div class="form-group">
+              <label class="form-label">Diagnóstico Principal e Secundários</label>
+              <textarea class="form-control" id="f_diagnostico" placeholder="CID e descrição dos diagnósticos..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- CONDUTA / PLANO -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 📝 Conduta e Plano Terapêutico</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+
+            <!-- RECEITÁRIO BUILDER -->
+            <div class="rx-builder">
+              <div class="rx-builder-header">
+                <div class="rx-header-left">
+                  <span>🖊 Receitário — Cardiologia</span>
+                  <div class="rx-toggle">
+                    <button class="rx-toggle-btn active" id="btnGenerico" onclick="setNomeMode('generico')">Genérico</button>
+                    <button class="rx-toggle-btn" id="btnComercial" onclick="setNomeMode('comercial')">Comercial</button>
+                  </div>
+                </div>
+                <button class="btn-manage-rx" onclick="openGerenciarMeds()">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Gerenciar Medicamentos
+                </button>
+              </div>
+
+              <div class="rx-categories" id="rxCatBar">
+                <button class="rx-cat-btn active" onclick="filterRxCat('todos', this)">Todos</button>
+                <button class="rx-cat-btn" onclick="filterRxCat('anti-hiper', this)">Anti-hipertensivos</button>
+                <button class="rx-cat-btn" onclick="filterRxCat('betabloq', this)">Betabloqueadores</button>
+                <button class="rx-cat-btn" onclick="filterRxCat('diuretico', this)">Diuréticos</button>
+                <button class="rx-cat-btn" onclick="filterRxCat('anticoag', this)">Anticoagulantes</button>
+                <button class="rx-cat-btn" onclick="filterRxCat('antiplaq', this)">Antiplaquetários</button>
+                <button class="rx-cat-btn" onclick="filterRxCat('estatina', this)">Estatinas</button>
+                <button class="rx-cat-btn" onclick="filterRxCat('antiarrit', this)">Antiarrítmicos</button>
+                <button class="rx-cat-btn" onclick="filterRxCat('sglt2', this)">SGLT2 / Diabetes</button>
+                <button class="rx-cat-btn" onclick="filterRxCat('outros', this)">Outros</button>
+              </div>
+
+              <div class="rx-med-list" id="rxMedList"></div>
+
+              <div class="rx-selected-list" id="rxSelectedWrap" style="display:none">
+                <div class="rx-selected-title">✅ Medicamentos selecionados para a receita</div>
+                <div id="rxSelectedItems"></div>
+              </div>
+
+              <div class="rx-actions-bar">
+                <button class="btn btn-outline" onclick="clearRxSelection()" style="font-size:12px">Limpar seleção</button>
+                <button class="btn-rx-emitir" onclick="openReceituario()">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                  Emitir Receita
+                </button>
+              </div>
+            </div>
+
+            <!-- Prescrição Salva (texto) -->
+            <div class="form-group" style="margin-bottom:14px">
+              <label class="form-label">Medicamentos Prescritos (resumo salvo no prontuário)</label>
+              <textarea class="form-control" id="f_prescricao" rows="4" placeholder="Os medicamentos do receitário serão adicionados aqui automaticamente. Você também pode editar manualmente."></textarea>
+            </div>
+
+            <div class="form-grid grid-2">
+              <div class="form-group">
+                <label class="form-label">Exames Solicitados</label>
+                <textarea class="form-control" id="f_examesSolicitados" placeholder="Exames pedidos nesta consulta..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Encaminhamentos</label>
+                <textarea class="form-control" id="f_encaminhamentos" placeholder="Especialidades e motivos..."></textarea>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Retorno / Próxima Consulta</label>
+                <input type="text" class="form-control" id="f_retorno" placeholder="Ex: 3 meses, Março/2025...">
+              </div>
+            </div>
+            <div class="form-group" style="margin-top:14px">
+              <label class="form-label">Observações Gerais / Orientações ao Paciente</label>
+              <textarea class="form-control" id="f_observacoes" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-save-bar">
+          <button class="btn btn-outline" onclick="backToSearch()">Cancelar</button>
+          <button class="btn btn-gold" onclick="saveProntuario()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+            Salvar Prontuário
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══ CASOS ESPECIAIS PAGE ══ -->
+  <div class="page" id="page-casos">
+    <div id="casosGrid" class="casos-grid"></div>
+  </div>
+
+</main>
+
+<!-- ══ MODAL: RECEITUÁRIO ══ -->
+<div class="modal-overlay" id="modalReceituario">
+  <div class="rx-print-wrap">
+    <div class="rx-print-header">
+      <div class="rx-print-header-info">
+        <div class="rx-print-title">📋 Visualização da Receita</div>
+        <div class="rx-print-sub">Confira antes de imprimir</div>
+      </div>
+      <button class="rx-print-close-btn" onclick="closeModal('modalReceituario')">✕</button>
+    </div>
+
+    <!-- Paper receipt preview -->
+    <div class="rx-paper">
+      <div class="rx-paper-top">
+        <div>
+          <div class="rx-paper-doctor-name">Dra. Mariana Barreto Mamprim</div>
+          <div class="rx-paper-doctor-info">
+            CRM-SP 123456 · Cardiologia<br>
+            Rua das Clínicas, 100 — São Paulo, SP<br>
+            (11) 9 9999-9999
+          </div>
+        </div>
+        <div class="rx-paper-logo">
+          <svg viewBox="0 0 24 24"><path d="M10 2h4v8h8v4h-8v8h-4v-8H2v-4h8z"/></svg>
+        </div>
+      </div>
+      <div class="rx-paper-gold-bar"></div>
+      <div class="rx-paper-body">
+        <div class="rx-paper-title-row">
+          <div class="rx-paper-receita-title">Receituário Médico</div>
+          <div class="rx-paper-date" id="rxPaperDate">—</div>
+        </div>
+        <div class="rx-paper-patient-row">
+          <div>
+            <div class="rx-paper-patient-label">Paciente</div>
+            <div class="rx-paper-patient-name" id="rxPaperPatient">—</div>
+            <div class="rx-paper-patient-info" id="rxPaperPatientInfo">—</div>
+          </div>
+        </div>
+        <div class="rx-paper-meds" id="rxPaperMeds"></div>
+        <div class="rx-paper-obs-section">
+          <div class="rx-paper-obs-label">Observações / Orientações</div>
+          <div class="rx-paper-obs">
+            <textarea id="rxPaperObs" placeholder="Orientações adicionais ao paciente..."></textarea>
+          </div>
+        </div>
+        <div class="rx-paper-sig">
+          <div class="rx-paper-sig-inner">
+            <div class="rx-paper-sig-name">Dra. Mariana Barreto Mamprim</div>
+            <div class="rx-paper-sig-crm">CRM-SP 123456 · Cardiologia</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rx-print-footer">
+      <button class="btn btn-outline" onclick="closeModal('modalReceituario')">Fechar</button>
+      <button class="btn btn-primary" onclick="printReceituario()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 01-2-2v-5a2 2 0 012-2h16a2 2 0 012 2v5a2 2 0 01-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        Imprimir Receita
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: GERENCIAR MEDICAMENTOS ══ -->
+<div class="modal-overlay" id="modalGerenciarMeds">
+  <div class="manage-meds-wrap">
+    <div class="manage-meds-header">
+      <div class="manage-meds-title">⚙️ Gerenciar Lista de Medicamentos</div>
+      <button class="rx-print-close-btn" onclick="closeModal('modalGerenciarMeds')">✕</button>
+    </div>
+    <div class="manage-meds-body">
+      <div class="manage-meds-add">
+        <div class="manage-meds-add-title">+ Adicionar novo medicamento</div>
+        <div class="manage-meds-form">
+          <div class="form-group">
+            <label class="form-label">Nome Genérico</label>
+            <input type="text" class="form-control" id="newMedGenerico" placeholder="Ex: Enalapril">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Nome Comercial</label>
+            <input type="text" class="form-control" id="newMedComercial" placeholder="Ex: Renitec">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Dose</label>
+            <input type="text" class="form-control" id="newMedDose" placeholder="Ex: 10 mg">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Categoria</label>
+            <select class="form-control" id="newMedCat">
+              <option value="anti-hiper">Anti-hipertensivo</option>
+              <option value="betabloq">Betabloqueador</option>
+              <option value="diuretico">Diurético</option>
+              <option value="anticoag">Anticoagulante</option>
+              <option value="antiplaq">Antiplaquetário</option>
+              <option value="estatina">Estatina</option>
+              <option value="antiarrit">Antiarrítmico</option>
+              <option value="sglt2">SGLT2 / Diabetes</option>
+              <option value="outros">Outros</option>
+            </select>
+          </div>
+          <div class="form-group col-full">
+            <label class="form-label">Posologia padrão</label>
+            <input type="text" class="form-control" id="newMedPosologia" placeholder="Ex: 1 comprimido pela manhã">
+          </div>
+        </div>
+        <div style="margin-top:14px;display:flex;justify-content:flex-end">
+          <button class="btn btn-gold" onclick="addCustomMed()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            Adicionar à lista
+          </button>
+        </div>
+      </div>
+      <div class="rx-selected-title" style="margin-bottom:12px">Medicamentos cadastrados</div>
+      <div class="manage-meds-list" id="manageMedsList"></div>
+    </div>
+    <div class="manage-meds-footer">
+      <button class="btn btn-outline" onclick="closeModal('modalGerenciarMeds')">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: PACIENTE EXISTENTE ══ -->
+<div class="modal-overlay" id="modalExistente">
+  <div class="modal">
+    <div class="modal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+    <div class="modal-title" id="modalExistenteTitle">Paciente Encontrado</div>
+    <div class="modal-subtitle" id="modalExistenteSubtitle">Este paciente possui consultas anteriores registradas. O que deseja fazer?</div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="verConsultasAnteriores()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+        Ver Anteriores
+      </button>
+      <button class="btn btn-gold" onclick="novaConsultaExistente()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        Nova Consulta
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: CONSULTAS ANTERIORES ══ -->
+<div class="modal-overlay" id="modalPrevVisits" style="z-index:1100">
+  <div class="modal" style="max-width:540px">
+    <div class="modal-title" style="margin-bottom:16px">Consultas Anteriores</div>
+    <div class="prev-visit-list" id="prevVisitList"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modalPrevVisits')">Fechar</button>
+      <button class="btn btn-gold" onclick="novaConsultaExistente()">Nova Consulta</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: ADICIONAR PACIENTE ══ -->
+<div class="modal-overlay" id="modalAddPatient">
+  <div class="modal" style="max-width:520px">
+    <div class="modal-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+    </div>
+    <div class="modal-title">Adicionar à Agenda</div>
+    <div class="modal-subtitle">Preencha os dados do paciente para a consulta de hoje.</div>
+    <div class="modal-form-grid">
+      <div class="form-group">
+        <label class="form-label">Nome do Paciente</label>
+        <input type="text" class="form-control no-icon" id="add_nome" placeholder="Nome completo">
+      </div>
+      <div class="form-grid grid-2">
+        <div class="form-group">
+          <label class="form-label">Telefone</label>
+          <input type="text" class="form-control no-icon" id="add_tel" placeholder="(00) 00000-0000">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Horário</label>
+          <input type="time" class="form-control no-icon" id="add_hora">
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Tipo de Consulta</label>
+        <select class="form-control" id="add_tipo">
+          <option value="Primeira Consulta">Primeira Consulta</option>
+          <option value="Retorno">Retorno</option>
+          <option value="Emergência">Emergência</option>
+          <option value="Exame">Avaliação de Exames</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Status de Confirmação</label>
+        <select class="form-control" id="add_status">
+          <option value="Confirmado">Confirmado</option>
+          <option value="Pendente">Pendente</option>
+          <option value="Cancelado">Cancelado</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal('modalAddPatient')">Cancelar</button>
+      <button class="btn btn-primary" onclick="addPatientToAgenda()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Confirmar
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span class="toast-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg></span>
+  <span id="toastMsg">Salvo com sucesso!</span>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════
+//  DATA STORE (localStorage)
+// ══════════════════════════════════════════════════
+const KEYS = { agenda: 'mbm_agenda', patients: 'mbm_patients', prontuarios: 'mbm_prontuarios', casos: 'mbm_casos', customMeds: 'mbm_custom_meds' };
+
+function load(key) { try { return JSON.parse(localStorage.getItem(key)) || []; } catch(e){ return []; } }
+function save(key, data) { localStorage.setItem(key, JSON.stringify(data)); }
+
+let agenda = load(KEYS.agenda);
+let patients = load(KEYS.patients);
+let prontuarios = load(KEYS.prontuarios);
+let casos = load(KEYS.casos);
+let currentPatient = null;
+let currentPage = 'agenda';
+
+// Seed demo data if empty
+function seedData() {
+  if (agenda.length === 0) {
+    const today = new Date().toISOString().split('T')[0];
+    agenda = [
+      { id: 1, nome: 'Ana Cristina Ferreira', telefone: '(11) 99812-3456', hora: '08:00', tipo: 'Primeira Consulta', status: 'Confirmado', data: today },
+      { id: 2, nome: 'Roberto Almeida Santos', telefone: '(11) 98765-4321', hora: '08:45', tipo: 'Retorno', status: 'Confirmado', data: today },
+      { id: 3, nome: 'Fernanda Lima Costa', telefone: '(11) 97654-3210', hora: '09:30', tipo: 'Avaliação de Exames', status: 'Pendente', data: today },
+      { id: 4, nome: 'Marcelo Rodrigues', telefone: '(11) 96543-2109', hora: '10:15', tipo: 'Retorno', status: 'Pendente', data: today },
+      { id: 5, nome: 'Beatriz Nunes Oliveira', telefone: '(11) 95432-1098', hora: '11:00', tipo: 'Primeira Consulta', status: 'Confirmado', data: today },
+      { id: 6, nome: 'Carlos Eduardo Pinto', telefone: '(11) 94321-0987', hora: '14:00', tipo: 'Retorno', status: 'Cancelado', data: today },
+    ];
+    save(KEYS.agenda, agenda);
+  }
+
+  if (patients.length === 0) {
+    patients = [
+      { id: 'p1', nome: 'Ana Cristina Ferreira', cpf: '123.456.789-00', nascimento: '1972-05-14', sexo: 'Feminino', telefone: '(11) 99812-3456', convenio: 'Unimed' },
+      { id: 'p2', nome: 'Roberto Almeida Santos', cpf: '987.654.321-00', nascimento: '1960-11-22', sexo: 'Masculino', telefone: '(11) 98765-4321', convenio: 'Bradesco Saúde' },
+      { id: 'p3', nome: 'Fernanda Lima Costa', cpf: '456.789.123-00', nascimento: '1985-03-08', sexo: 'Feminino', telefone: '(11) 97654-3210', convenio: 'SulAmérica' },
+    ];
+    save(KEYS.patients, patients);
+  }
+
+  if (prontuarios.length === 0) {
+    prontuarios = [
+      { id: 'pr1', patientId: 'p2', data: '2024-09-10', queixa: 'Palpitações e dispneia aos esforços', diagnostico: 'Fibrilação atrial paroxística', comorbidades: ['HAS', 'DM'] },
+      { id: 'pr2', patientId: 'p2', data: '2025-01-15', queixa: 'Controle de FA, avaliação de exames', diagnostico: 'FA paroxística em controle', comorbidades: ['HAS', 'DM'] },
+      { id: 'pr3', patientId: 'p3', data: '2024-11-20', queixa: 'Dor precordial ao esforço', diagnostico: 'Angina estável, DAC', comorbidades: ['Dislipidemia'] },
+    ];
+    save(KEYS.prontuarios, prontuarios);
+  }
+
+  if (casos.length === 0) {
+    casos = [
+      { id: 'c1', patientId: 'p2', nome: 'Roberto Almeida Santos', idade: 64, resumo: 'Paciente com FA paroxística de difícil controle. Múltiplas cardioversões realizadas. Em avaliação para ablação por cateter.', tags: ['FA Refratária', 'Candidato Ablação'], data: '2025-01-15' },
+      { id: 'c2', patientId: 'p3', nome: 'Fernanda Lima Costa', idade: 40, resumo: 'DAC com lesão em TCI confirmada por cineangiocoronariografia. Caso multidisciplinar discutido em Heart Team. Aguarda ICP.', tags: ['TCI', 'Heart Team', 'DAC'], data: '2024-11-20' },
+    ];
+    save(KEYS.casos, casos);
+  }
+}
+seedData();
+
+// ══════════════════════════════════════════════════
+//  CLOCK
+// ══════════════════════════════════════════════════
+function updateClock() {
+  const now = new Date();
+  const weekdays = ['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+  const months = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  document.getElementById('sidebarDate').textContent = `${weekdays[now.getDay()]}, ${now.getDate()} de ${months[now.getMonth()]}`;
+  document.getElementById('sidebarTime').textContent = now.toLocaleTimeString('pt-BR', {hour:'2-digit', minute:'2-digit'});
+
+  const shortMonths = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  document.getElementById('agendaDateDisplay').textContent = `${now.getDate()} de ${months[now.getMonth()]}`;
+  document.getElementById('agendaDateSub').textContent = `${weekdays[now.getDay()]} · ${now.getFullYear()}`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// ══════════════════════════════════════════════════
+//  NAVIGATION
+// ══════════════════════════════════════════════════
+function navigate(page) {
+  currentPage = page;
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelectorAll('.nav-item')[['agenda','prontuario','casos'].indexOf(page)].classList.add('active');
+
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById(`page-${page}`).classList.add('active');
+
+  const titles = { agenda: 'Agenda do Dia', prontuario: 'Prontuário', casos: 'Casos Especiais' };
+  document.getElementById('topbarTitle').textContent = titles[page];
+
+  const btn = document.getElementById('topbarBtn');
+  const btn2 = document.getElementById('topbarBtn2');
+  btn2.style.display = 'none';
+
+  if (page === 'agenda') {
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Adicionar Paciente`;
+    btn.onclick = openAddPatient;
+    renderAgenda();
+  } else if (page === 'prontuario') {
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Novo Paciente`;
+    btn.onclick = () => { navigate('prontuario'); openAddPatient(); };
+    backToSearch();
+  } else if (page === 'casos') {
+    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Adicionar Caso`;
+    btn.onclick = () => showToast('Em breve: adicionar novo caso especial.');
+    renderCasos();
+  }
+}
+
+// ══════════════════════════════════════════════════
+//  AGENDA
+// ══════════════════════════════════════════════════
+function renderAgenda() {
+  const today = new Date().toISOString().split('T')[0];
+  const todayItems = agenda.filter(a => a.data === today).sort((a,b) => a.hora.localeCompare(b.hora));
+  
+  document.getElementById('statTotal').textContent = todayItems.length;
+  document.getElementById('statConfirmed').textContent = todayItems.filter(a=>a.status==='Confirmado').length;
+  document.getElementById('statPending').textContent = todayItems.filter(a=>a.status==='Pendente').length;
+
+  const tbody = document.getElementById('agendaTableBody');
+  if (todayItems.length === 0) {
+    tbody.innerHTML = `<tr><td colspan="5"><div class="empty-state"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><p>Nenhuma consulta agendada para hoje.<br>Clique em "Adicionar Paciente" para começar.</p></div></td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = todayItems.map(item => {
+    const initials = item.nome.split(' ').slice(0,2).map(n=>n[0]).join('');
+    const statusBadge = item.status === 'Confirmado'
+      ? `<span class="badge badge-green"><span class="badge-dot"></span>Confirmado</span>`
+      : item.status === 'Cancelado'
+      ? `<span class="badge badge-red"><span class="badge-dot"></span>Cancelado</span>`
+      : `<span class="badge badge-amber"><span class="badge-dot"></span>Pendente</span>`;
+    return `<tr>
+      <td><div class="patient-name-cell">
+        <div class="patient-avatar">${initials}</div>
+        <div><div class="patient-name">${item.nome}</div><div class="patient-type">${item.tipo}</div></div>
+      </div></td>
+      <td style="font-weight:600;color:var(--navy)">${item.hora}</td>
+      <td style="color:var(--gray-600)">${item.telefone}</td>
+      <td>${statusBadge}</td>
+      <td><div class="row-actions">
+        <button class="icon-btn" title="Abrir Prontuário" onclick="openPatientFromAgenda('${item.nome}')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        </button>
+        <button class="icon-btn" title="Confirmar/Alterar Status" onclick="toggleStatus(${item.id})">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+        <button class="icon-btn" title="Remover" onclick="removeFromAgenda(${item.id})" style="color:var(--red)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+        </button>
+      </div></td>
+    </tr>`;
+  }).join('');
+}
+
+function openPatientFromAgenda(nome) {
+  navigate('prontuario');
+  document.getElementById('patientSearchInput').value = nome;
+  filterPatients();
+}
+
+function toggleStatus(id) {
+  const cycle = ['Pendente', 'Confirmado', 'Cancelado'];
+  const item = agenda.find(a => a.id === id);
+  if (item) {
+    const idx = cycle.indexOf(item.status);
+    item.status = cycle[(idx + 1) % cycle.length];
+    save(KEYS.agenda, agenda);
+    renderAgenda();
+  }
+}
+
+function removeFromAgenda(id) {
+  agenda = agenda.filter(a => a.id !== id);
+  save(KEYS.agenda, agenda);
+  renderAgenda();
+  showToast('Paciente removido da agenda.');
+}
+
+// ══════════════════════════════════════════════════
+//  ADD PATIENT MODAL
+// ══════════════════════════════════════════════════
+function openAddPatient() {
+  document.getElementById('modalAddPatient').classList.add('open');
+}
+
+function addPatientToAgenda() {
+  const nome = document.getElementById('add_nome').value.trim();
+  const tel = document.getElementById('add_tel').value.trim();
+  const hora = document.getElementById('add_hora').value;
+  const tipo = document.getElementById('add_tipo').value;
+  const status = document.getElementById('add_status').value;
+
+  if (!nome || !hora) { showToast('Preencha nome e horário.'); return; }
+
+  const today = new Date().toISOString().split('T')[0];
+  const newId = Date.now();
+  agenda.push({ id: newId, nome, telefone: tel, hora, tipo, status, data: today });
+  save(KEYS.agenda, agenda);
+  closeModal('modalAddPatient');
+  navigate('agenda');
+  showToast(`${nome} adicionado à agenda!`);
+
+  ['add_nome','add_tel','add_hora'].forEach(id => document.getElementById(id).value = '');
+}
+
+// ══════════════════════════════════════════════════
+//  PRONTUÁRIO SEARCH
+// ══════════════════════════════════════════════════
+function filterPatients() {
+  const q = document.getElementById('patientSearchInput').value.toLowerCase().trim();
+  const container = document.getElementById('patientSearchResults');
+
+  if (!q) {
+    container.innerHTML = `<div class="empty-state" style="padding:32px">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <p>Digite o nome ou CPF do paciente para buscar.</p></div>`;
+    return;
+  }
+
+  const results = patients.filter(p => p.nome.toLowerCase().includes(q) || (p.cpf && p.cpf.includes(q)));
+
+  if (results.length === 0) {
+    container.innerHTML = `<div class="empty-state" style="padding:32px; background:white; border-radius:12px; box-shadow:var(--shadow-sm)">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <p>Paciente não encontrado.<br>
+      <button onclick="openAddPatientFull()" style="background:none;border:none;color:var(--gold);font-weight:700;cursor:pointer;font-family:inherit;font-size:14px;margin-top:8px;text-decoration:underline">Cadastrar novo paciente</button></p></div>`;
+    return;
+  }
+
+  container.innerHTML = `<div class="prontuario-form" style="margin-top:0">
+    ${results.map(p => {
+      const initials = p.nome.split(' ').slice(0,2).map(n=>n[0]).join('');
+      const patPronts = prontuarios.filter(pr => pr.patientId === p.id);
+      const isNew = patPronts.length === 0;
+      return `<div style="display:flex;align-items:center;gap:16px;padding:18px 24px;border-bottom:1px solid var(--gray-100);cursor:pointer;transition:background 0.15s" onmouseover="this.style.background='var(--cream)'" onmouseout="this.style.background=''" onclick="selectPatient('${p.id}')">
+        <div class="patient-avatar" style="width:44px;height:44px;font-size:18px">${initials}</div>
+        <div style="flex:1">
+          <div style="font-weight:700;font-size:15px;color:var(--navy)">${p.nome}</div>
+          <div style="font-size:12px;color:var(--gray-400);margin-top:2px">CPF: ${p.cpf || '—'} · ${calcAgeDisplay(p.nascimento)} anos · ${p.sexo || '—'} · ${p.convenio || '—'}</div>
+        </div>
+        <div>
+          <span class="${isNew ? 'badge badge-amber' : 'badge badge-green'}">${isNew ? 'Primeira Consulta' : patPronts.length+' consulta'+  (patPronts.length>1?'s':'') }</span>
+        </div>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gray-400)" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>`;
+    }).join('')}
+  </div>`;
+}
+
+function calcAgeDisplay(dob) {
+  if (!dob) return '—';
+  const diff = Date.now() - new Date(dob).getTime();
+  return Math.floor(diff / (365.25 * 24 * 3600 * 1000));
+}
+
+function selectPatient(patientId) {
+  currentPatient = patients.find(p => p.id === patientId);
+  const patPronts = prontuarios.filter(pr => pr.patientId === patientId);
+
+  if (patPronts.length > 0) {
+    document.getElementById('modalExistenteTitle').textContent = currentPatient.nome;
+    document.getElementById('modalExistenteSubtitle').textContent = `Este paciente possui ${patPronts.length} atendimento(s) anterior(es) registrado(s). O que deseja fazer?`;
+    document.getElementById('modalExistente').classList.add('open');
+  } else {
+    openNewProntuario();
+  }
+}
+
+function openAddPatientFull() { openAddPatient(); }
+
+function verConsultasAnteriores() {
+  closeModal('modalExistente');
+  const patPronts = prontuarios.filter(pr => pr.patientId === currentPatient.id).sort((a,b) => b.data.localeCompare(a.data));
+  document.getElementById('prevVisitList').innerHTML = patPronts.map(pr => `
+    <div class="prev-visit-item" onclick="loadProntuario('${pr.id}')">
+      <div class="prev-visit-date">📅 ${formatDate(pr.data)}</div>
+      <div class="prev-visit-queixa">Queixa: ${pr.queixa || '—'}</div>
+      <div class="prev-visit-queixa">Diagnóstico: ${pr.diagnostico || '—'}</div>
+    </div>
+  `).join('');
+  document.getElementById('modalPrevVisits').classList.add('open');
+}
+
+function loadProntuario(prId) {
+  closeModal('modalPrevVisits');
+  const pr = prontuarios.find(p => p.id === prId);
+  if (pr) {
+    openFormView();
+    populateForm({ ...currentPatient, ...pr, readOnly: true });
+    showToast('Prontuário carregado (somente leitura).');
+  }
+}
+
+function novaConsultaExistente() {
+  closeModal('modalExistente');
+  closeModal('modalPrevVisits');
+  openNewProntuario();
+}
+
+function openNewProntuario() {
+  openFormView();
+  clearForm();
+  if (currentPatient) populateForm(currentPatient);
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('f_dataConsulta').value = today;
+}
+
+function openFormView() {
+  document.querySelectorAll('.prontuario-view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-form').classList.add('active');
+}
+
+function backToSearch() {
+  document.querySelectorAll('.prontuario-view').forEach(v => v.classList.remove('active'));
+  document.getElementById('view-search').classList.add('active');
+  currentPatient = null;
+  document.getElementById('patientSearchResults').innerHTML = `<div class="empty-state" style="padding:32px">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <p>Digite o nome ou CPF do paciente para buscar.</p></div>`;
+}
+
+function populateForm(p) {
+  const set = (id, val) => { const el = document.getElementById(id); if (el && val) el.value = val; };
+  set('f_nome', p.nome); set('f_cpf', p.cpf); set('f_nascimento', p.nascimento);
+  set('f_sexo', p.sexo); set('f_convenio', p.convenio); set('f_telefone', p.telefone);
+  set('f_email', p.email); set('f_profissao', p.profissao);
+  set('f_queixa', p.queixa); set('f_diagnostico', p.diagnostico);
+  if (p.nascimento) calcAge();
+
+  // Update header card
+  const age = calcAgeDisplay(p.nascimento);
+  const initials = (p.nome||'').split(' ').slice(0,2).map(n=>n[0]).join('');
+  document.getElementById('formPatientHeader').innerHTML = `
+    <div class="patient-header-info">
+      <div class="patient-header-avatar">${initials}</div>
+      <div>
+        <div class="patient-header-name">${p.nome || 'Novo Paciente'}</div>
+        <div class="patient-header-details">${age !== '—' ? age + ' anos · ' : ''}${p.sexo || ''} ${p.convenio ? '· ' + p.convenio : ''}</div>
+      </div>
+    </div>
+    <div class="patient-header-badge">${p.convenio || 'Particular'}</div>`;
+}
+
+function clearForm() {
+  document.querySelectorAll('#view-form .form-control').forEach(el => { el.value = ''; });
+  document.querySelectorAll('#comorbGrid input[type=checkbox]').forEach(cb => cb.checked = false);
+  document.getElementById('formPatientHeader').innerHTML = `
+    <div class="patient-header-info">
+      <div class="patient-header-avatar">+</div>
+      <div><div class="patient-header-name">Novo Paciente</div><div class="patient-header-details">Preencha os dados abaixo</div></div>
+    </div><div class="patient-header-badge">Nova Consulta</div>`;
+}
+
+function saveProntuario() {
+  const nome = document.getElementById('f_nome').value.trim();
+  if (!nome) { showToast('Preencha o nome do paciente.'); return; }
+
+  let patient = patients.find(p => p.nome.toLowerCase() === nome.toLowerCase());
+  if (!patient) {
+    patient = {
+      id: 'p' + Date.now(),
+      nome, cpf: document.getElementById('f_cpf').value,
+      nascimento: document.getElementById('f_nascimento').value,
+      sexo: document.getElementById('f_sexo').value,
+      telefone: document.getElementById('f_telefone').value,
+      email: document.getElementById('f_email').value,
+      convenio: document.getElementById('f_convenio').value,
+      profissao: document.getElementById('f_profissao').value,
+    };
+    patients.push(patient);
+    save(KEYS.patients, patients);
+  }
+
+  const comorbidades = Array.from(document.querySelectorAll('#comorbGrid input:checked')).map(cb => cb.value);
+
+  const pr = {
+    id: 'pr' + Date.now(),
+    patientId: patient.id,
+    data: document.getElementById('f_dataConsulta').value || new Date().toISOString().split('T')[0],
+    queixa: document.getElementById('f_queixa').value,
+    hda: document.getElementById('f_hda').value,
+    diagnostico: document.getElementById('f_diagnostico').value,
+    comorbidades,
+    conduta: document.getElementById('f_prescricao').value,
+  };
+
+  prontuarios.push(pr);
+  save(KEYS.prontuarios, prontuarios);
+  showToast('Prontuário salvo com sucesso!');
+  setTimeout(() => backToSearch(), 1200);
+}
+
+// ══════════════════════════════════════════════════
+//  CASOS ESPECIAIS
+// ══════════════════════════════════════════════════
+function renderCasos() {
+  const grid = document.getElementById('casosGrid');
+  if (casos.length === 0) {
+    grid.innerHTML = `<div class="empty-state" style="grid-column:1/-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><p>Nenhum caso especial registrado ainda.</p></div>`;
+    return;
+  }
+  grid.innerHTML = casos.map(c => {
+    const initials = c.nome.split(' ').slice(0,2).map(n=>n[0]).join('');
+    return `<div class="caso-card" onclick="openCasoPatient('${c.patientId}')">
+      <div class="caso-card-body">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px">
+          <div class="patient-avatar" style="width:44px;height:44px;font-size:18px">${initials}</div>
+          <div>
+            <div class="caso-card-name">${c.nome}</div>
+            <div class="caso-card-detail">${c.idade} anos · Último atendimento: ${formatDate(c.data)}</div>
+          </div>
+        </div>
+        <div class="caso-card-note">${c.resumo}</div>
+        <div class="caso-card-tags">${c.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function openCasoPatient(pid) {
+  navigate('prontuario');
+  const p = patients.find(pt => pt.id === pid);
+  if (p) {
+    document.getElementById('patientSearchInput').value = p.nome;
+    filterPatients();
+  }
+}
+
+// ══════════════════════════════════════════════════
+//  HELPERS
+// ══════════════════════════════════════════════════
+function toggleAnamnese(header) {
+  const content = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  content.classList.toggle('open');
+  chevron.classList.toggle('open');
+}
+
+function calcAge() {
+  const dob = document.getElementById('f_nascimento').value;
+  if (!dob) return;
+  const age = Math.floor((Date.now() - new Date(dob).getTime()) / (365.25 * 24 * 3600 * 1000));
+  document.getElementById('f_idade').value = age + ' anos';
+}
+
+function calcIMC() {
+  const peso = parseFloat(document.getElementById('f_peso').value);
+  const altura = parseFloat(document.getElementById('f_altura').value) / 100;
+  if (peso && altura) {
+    const imc = (peso / (altura * altura)).toFixed(1);
+    document.getElementById('f_imc').value = imc;
+    let cls = '';
+    if (imc < 18.5) cls = 'Abaixo do peso';
+    else if (imc < 25) cls = 'Peso normal';
+    else if (imc < 30) cls = 'Sobrepeso';
+    else if (imc < 35) cls = 'Obesidade I';
+    else if (imc < 40) cls = 'Obesidade II';
+    else cls = 'Obesidade III';
+    document.getElementById('f_imcClass').value = cls;
+  }
+}
+
+function formatDate(d) {
+  if (!d) return '—';
+  const [y,m,day] = d.split('-');
+  const months = ['Jan','Fev','Mar','Abr','Mai','Jun','Jul','Ago','Set','Out','Nov','Dez'];
+  return `${day}/${months[parseInt(m)-1]}/${y}`;
+}
+
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 3000);
+}
+
+function topbarAction() { /* delegated via onclick */ }
+function topbarAction2() {}
+
+// ══════════════════════════════════════════════════
+//  RECEITUÁRIO
+// ══════════════════════════════════════════════════
+
+// Default medication list
+const defaultRxMeds = [
+  { id:'m1', generico:'Losartana', comercial:'Cozaar', dose:'50 mg', posologia:'1 comprimido à noite', cat:'anti-hiper' },
+  { id:'m2', generico:'Anlodipino', comercial:'Norvasc', dose:'5 mg', posologia:'1 comprimido pela manhã', cat:'anti-hiper' },
+  { id:'m3', generico:'Enalapril', comercial:'Renitec', dose:'10 mg', posologia:'1 comprimido de 12/12h', cat:'anti-hiper' },
+  { id:'m4', generico:'Ramipril', comercial:'Tritace', dose:'5 mg', posologia:'1 comprimido pela manhã', cat:'anti-hiper' },
+  { id:'m5', generico:'Valsartana', comercial:'Diovan', dose:'160 mg', posologia:'1 comprimido pela manhã', cat:'anti-hiper' },
+  { id:'m6', generico:'Metoprolol Succinato', comercial:'Selozok', dose:'50 mg', posologia:'1 comprimido pela manhã', cat:'betabloq' },
+  { id:'m7', generico:'Carvedilol', comercial:'Coreg', dose:'25 mg', posologia:'1 comprimido de 12/12h com refeição', cat:'betabloq' },
+  { id:'m8', generico:'Bisoprolol', comercial:'Concor', dose:'5 mg', posologia:'1 comprimido pela manhã', cat:'betabloq' },
+  { id:'m9', generico:'Propranolol', comercial:'Inderal', dose:'40 mg', posologia:'1 comprimido de 8/8h', cat:'betabloq' },
+  { id:'m10', generico:'Furosemida', comercial:'Lasix', dose:'40 mg', posologia:'1 comprimido pela manhã em jejum', cat:'diuretico' },
+  { id:'m11', generico:'Espironolactona', comercial:'Aldactone', dose:'25 mg', posologia:'1 comprimido pela manhã', cat:'diuretico' },
+  { id:'m12', generico:'Hidroclorotiazida', comercial:'Clorana', dose:'25 mg', posologia:'1 comprimido pela manhã', cat:'diuretico' },
+  { id:'m13', generico:'Apixabana', comercial:'Eliquis', dose:'5 mg', posologia:'1 comprimido de 12/12h', cat:'anticoag' },
+  { id:'m14', generico:'Rivaroxabana', comercial:'Xarelto', dose:'20 mg', posologia:'1 comprimido ao jantar', cat:'anticoag' },
+  { id:'m15', generico:'Dabigatrana', comercial:'Pradaxa', dose:'110 mg', posologia:'1 cápsula de 12/12h', cat:'anticoag' },
+  { id:'m16', generico:'Varfarina', comercial:'Coumadin', dose:'5 mg', posologia:'Conforme INR — dose individualizada', cat:'anticoag' },
+  { id:'m17', generico:'AAS', comercial:'Aspirina 100', dose:'100 mg', posologia:'1 comprimido ao almoço', cat:'antiplaq' },
+  { id:'m18', generico:'Clopidogrel', comercial:'Plavix', dose:'75 mg', posologia:'1 comprimido pela manhã', cat:'antiplaq' },
+  { id:'m19', generico:'Ticagrelor', comercial:'Brilinta', dose:'90 mg', posologia:'1 comprimido de 12/12h', cat:'antiplaq' },
+  { id:'m20', generico:'Rosuvastatina', comercial:'Crestor', dose:'20 mg', posologia:'1 comprimido à noite', cat:'estatina' },
+  { id:'m21', generico:'Atorvastatina', comercial:'Lipitor', dose:'40 mg', posologia:'1 comprimido à noite', cat:'estatina' },
+  { id:'m22', generico:'Sinvastatina', comercial:'Zocor', dose:'40 mg', posologia:'1 comprimido à noite', cat:'estatina' },
+  { id:'m23', generico:'Amiodarona', comercial:'Ancoron', dose:'200 mg', posologia:'1 comprimido/dia (após curva de ataque)', cat:'antiarrit' },
+  { id:'m24', generico:'Digoxina', comercial:'Lanoxin', dose:'0,25 mg', posologia:'1 comprimido pela manhã', cat:'antiarrit' },
+  { id:'m25', generico:'Empagliflozina', comercial:'Jardiance', dose:'10 mg', posologia:'1 comprimido pela manhã', cat:'sglt2' },
+  { id:'m26', generico:'Dapagliflozina', comercial:'Forxiga', dose:'10 mg', posologia:'1 comprimido pela manhã', cat:'sglt2' },
+  { id:'m27', generico:'Sacubitril + Valsartana', comercial:'Entresto', dose:'97/103 mg', posologia:'1 comprimido de 12/12h', cat:'outros' },
+  { id:'m28', generico:'Ivabradina', comercial:'Procoralan', dose:'5 mg', posologia:'1 comprimido de 12/12h com refeição', cat:'outros' },
+  { id:'m29', generico:'Nitroglicerina SL', comercial:'Nitrostat', dose:'0,5 mg', posologia:'1 comprimido sublingual em caso de dor', cat:'outros' },
+  { id:'m30', generico:'Ezetimiba', comercial:'Zetia', dose:'10 mg', posologia:'1 comprimido pela manhã', cat:'outros' },
+];
+
+let customRxMeds = load(KEYS.customMeds);
+let rxNomeMode = 'generico';
+let rxCurrentCat = 'todos';
+let rxSelection = []; // array of med ids selected
+
+function getAllMeds() {
+  return [...defaultRxMeds, ...customRxMeds];
+}
+
+function getMedName(med) {
+  return rxNomeMode === 'generico' ? med.generico : (med.comercial || med.generico);
+}
+
+function setNomeMode(mode) {
+  rxNomeMode = mode;
+  document.getElementById('btnGenerico').classList.toggle('active', mode === 'generico');
+  document.getElementById('btnComercial').classList.toggle('active', mode === 'comercial');
+  renderRxMeds();
+}
+
+function filterRxCat(cat, btn) {
+  rxCurrentCat = cat;
+  document.querySelectorAll('.rx-cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderRxMeds();
+}
+
+function renderRxMeds() {
+  const list = document.getElementById('rxMedList');
+  const meds = getAllMeds().filter(m => rxCurrentCat === 'todos' || m.cat === rxCurrentCat);
+  if (meds.length === 0) {
+    list.innerHTML = `<div style="grid-column:1/-1;text-align:center;color:var(--gray-400);padding:24px;font-size:13px">Nenhum medicamento nesta categoria.</div>`;
+    return;
+  }
+  list.innerHTML = meds.map(m => {
+    const sel = rxSelection.includes(m.id);
+    return `<div class="rx-med-item ${sel ? 'selected' : ''}" onclick="toggleRxMed('${m.id}')">
+      <div class="rx-med-text">
+        <div class="rx-med-name">${getMedName(m)}</div>
+        <div class="rx-med-dose">${m.dose}</div>
+        <div class="rx-med-posologia">${m.posologia}</div>
+      </div>
+      <div class="rx-add-icon">${sel ? '✓' : '+'}</div>
+    </div>`;
+  }).join('');
+}
+
+function toggleRxMed(medId) {
+  const idx = rxSelection.indexOf(medId);
+  if (idx === -1) {
+    rxSelection.push(medId);
+  } else {
+    rxSelection.splice(idx, 1);
+  }
+  renderRxMeds();
+  renderRxSelected();
+}
+
+function renderRxSelected() {
+  const wrap = document.getElementById('rxSelectedWrap');
+  const items = document.getElementById('rxSelectedItems');
+  if (rxSelection.length === 0) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  const allMeds = getAllMeds();
+  items.innerHTML = rxSelection.map(id => {
+    const m = allMeds.find(x => x.id === id);
+    if (!m) return '';
+    return `<div class="rx-selected-item">
+      <div class="rx-selected-info">
+        <div class="rx-selected-name">${getMedName(m)} ${m.dose}</div>
+        <div class="rx-selected-detail">${m.posologia}</div>
+      </div>
+      <button class="rx-remove-btn" onclick="toggleRxMed('${m.id}')">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function clearRxSelection() {
+  rxSelection = [];
+  renderRxMeds();
+  renderRxSelected();
+}
+
+function openReceituario() {
+  const allMeds = getAllMeds();
+  const nome = document.getElementById('f_nome')?.value || 'Paciente';
+  const nascimento = document.getElementById('f_nascimento')?.value;
+  const sexo = document.getElementById('f_sexo')?.value;
+  const convenio = document.getElementById('f_convenio')?.value;
+  const age = nascimento ? calcAgeDisplay(nascimento) + ' anos' : '';
+  const infoParts = [age, sexo, convenio].filter(Boolean);
+
+  // Fill paper
+  const now = new Date();
+  const months = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+  document.getElementById('rxPaperDate').textContent = `${now.getDate()} de ${months[now.getMonth()]} de ${now.getFullYear()}`;
+  document.getElementById('rxPaperPatient').textContent = nome;
+  document.getElementById('rxPaperPatientInfo').textContent = infoParts.join(' · ') || '—';
+
+  const medsToShow = rxSelection.length > 0 ? rxSelection : [];
+  if (medsToShow.length === 0) {
+    document.getElementById('rxPaperMeds').innerHTML = `<div style="color:var(--gray-400);font-size:13px;padding:12px 0;font-style:italic">Nenhum medicamento selecionado. Feche, selecione os medicamentos e emita novamente.</div>`;
+  } else {
+    document.getElementById('rxPaperMeds').innerHTML = medsToShow.map((id, i) => {
+      const m = allMeds.find(x => x.id === id);
+      if (!m) return '';
+      return `<div class="rx-paper-med">
+        <div class="rx-paper-num">${i+1}</div>
+        <div>
+          <div class="rx-paper-med-name">${getMedName(m)} ${m.dose}</div>
+          <div class="rx-paper-med-posologia">${m.posologia}</div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  // Auto-fill prescricao textarea
+  if (medsToShow.length > 0) {
+    const prescricaoEl = document.getElementById('f_prescricao');
+    if (prescricaoEl) {
+      prescricaoEl.value = medsToShow.map((id, i) => {
+        const m = allMeds.find(x => x.id === id);
+        return m ? `${i+1}. ${getMedName(m)} ${m.dose} — ${m.posologia}` : '';
+      }).filter(Boolean).join('\n');
+    }
+  }
+
+  document.getElementById('modalReceituario').classList.add('open');
+}
+
+function printReceituario() {
+  window.print();
+}
+
+// ── GERENCIAR MEDICAMENTOS ──
+function openGerenciarMeds() {
+  renderManageMedsList();
+  document.getElementById('modalGerenciarMeds').classList.add('open');
+}
+
+function renderManageMedsList() {
+  const list = document.getElementById('manageMedsList');
+  const catLabels = {
+    'anti-hiper': 'Anti-hipertensivo', 'betabloq': 'Betabloqueador',
+    'diuretico': 'Diurético', 'anticoag': 'Anticoagulante',
+    'antiplaq': 'Antiplaquetário', 'estatina': 'Estatina',
+    'antiarrit': 'Antiarrítmico', 'sglt2': 'SGLT2/Diabetes', 'outros': 'Outros'
+  };
+  const allMeds = getAllMeds();
+  list.innerHTML = allMeds.map(m => {
+    const isCustom = customRxMeds.some(c => c.id === m.id);
+    return `<div class="manage-med-row">
+      <div class="manage-med-cat-dot"></div>
+      <div class="manage-med-info">
+        <div class="manage-med-name">${m.generico}${m.comercial && m.comercial !== m.generico ? ` <span style="color:var(--gray-400);font-weight:400">(${m.comercial})</span>` : ''} — ${m.dose}</div>
+        <div class="manage-med-sub">${catLabels[m.cat] || m.cat} · ${m.posologia}</div>
+      </div>
+      ${isCustom ? `<button class="manage-med-del" onclick="deleteCustomMed('${m.id}')" title="Excluir">✕</button>` : `<span style="font-size:11px;color:var(--gray-400);padding:4px 8px">padrão</span>`}
+    </div>`;
+  }).join('');
+}
+
+function addCustomMed() {
+  const generico = document.getElementById('newMedGenerico').value.trim();
+  const comercial = document.getElementById('newMedComercial').value.trim();
+  const dose = document.getElementById('newMedDose').value.trim();
+  const cat = document.getElementById('newMedCat').value;
+  const posologia = document.getElementById('newMedPosologia').value.trim();
+  if (!generico || !dose) { showToast('Preencha ao menos o nome genérico e a dose.'); return; }
+  const newMed = { id: 'cm' + Date.now(), generico, comercial: comercial || generico, dose, posologia: posologia || '—', cat };
+  customRxMeds.push(newMed);
+  save(KEYS.customMeds, customRxMeds);
+  ['newMedGenerico','newMedComercial','newMedDose','newMedPosologia'].forEach(id => document.getElementById(id).value = '');
+  renderManageMedsList();
+  renderRxMeds();
+  showToast(`${generico} adicionado com sucesso!`);
+}
+
+function deleteCustomMed(id) {
+  customRxMeds = customRxMeds.filter(m => m.id !== id);
+  save(KEYS.customMeds, customRxMeds);
+  rxSelection = rxSelection.filter(s => s !== id);
+  renderManageMedsList();
+  renderRxMeds();
+  renderRxSelected();
+  showToast('Medicamento removido.');
+}
+
+// ── VACINAS ──
+function toggleVacina(name) {
+  const item = document.getElementById('vac_' + name);
+  const cb = document.getElementById('vcheck_' + name);
+  if (item) item.classList.toggle('aplicada', cb.checked);
+}
+
+// Checkbox styling
+document.querySelectorAll('.checkbox-item input[type=checkbox]').forEach(cb => {
+  cb.addEventListener('change', () => {
+    cb.closest('.checkbox-item').classList.toggle('checked', cb.checked);
+  });
+});
+
+// Init receituário
+renderRxMeds();
+
+// ══════════════════════════════════════════════════
+//  Init
+// ══════════════════════════════════════════════════
+renderAgenda();
+</script>
+</body>
+</html>
