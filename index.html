@@ -629,6 +629,90 @@
 
   select.form-control { cursor: pointer; }
 
+  /* ── ECG BUILDER ── */
+  .ecg-builder {
+    border: 1.5px solid var(--navy-light);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    background: var(--white);
+    box-shadow: var(--shadow-sm);
+  }
+  .ecg-builder-header {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    color: var(--white);
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .ecg-quick-btn {
+    padding: 5px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    font-family: 'Nunito Sans', sans-serif;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .ecg-quick-btn:hover { background: rgba(255,255,255,0.22); }
+  .ecg-normal-btn { border-color: var(--gold-light); color: var(--gold-light); }
+  .ecg-normal-btn:hover { background: rgba(184,150,46,0.25); }
+  .ecg-groups { padding: 16px 18px 8px; display: flex; flex-direction: column; gap: 12px; }
+  .ecg-group { background: var(--cream); border-radius: 10px; padding: 12px 14px; }
+  .ecg-group-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--navy); margin-bottom: 10px;
+  }
+  .ecg-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ecg-chip {
+    padding: 5px 12px; border-radius: 20px; border: 1.5px solid var(--gray-200);
+    background: var(--white); font-size: 12px; font-weight: 500; color: var(--gray-800);
+    cursor: pointer; font-family: 'Nunito Sans', sans-serif; transition: all 0.18s; user-select: none;
+  }
+  .ecg-chip:hover { border-color: var(--navy); background: var(--gold-pale); }
+  .ecg-chip.active { background: var(--navy); color: var(--white); border-color: var(--navy); font-weight: 700; }
+  .ecg-chip-warn { border-color: #D97706; color: #92400E; background: #FEF3C7; }
+  .ecg-chip-warn:hover { background: #FDE68A; }
+  .ecg-chip-warn.active { background: #D97706; color: var(--white); border-color: #D97706; }
+  .ecg-chip-danger { border-color: #C0392B; color: #7B1D1D; background: #FDECEA; }
+  .ecg-chip-danger:hover { background: #FCA5A5; }
+  .ecg-chip-danger.active { background: #C0392B; color: var(--white); border-color: #C0392B; }
+  .ecg-custom-add { border-top: 1px solid var(--gray-100); padding: 14px 18px 12px; background: var(--white); }
+  .ecg-custom-label { font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .ecg-custom-row { display: flex; gap: 8px; }
+  .ecg-custom-input {
+    flex: 1; padding: 8px 12px; border: 1.5px solid var(--gray-200); border-radius: 8px;
+    font-size: 13px; font-family: 'Nunito Sans', sans-serif; color: var(--gray-800);
+    outline: none; transition: border 0.2s;
+  }
+  .ecg-custom-input:focus { border-color: var(--navy); }
+  .ecg-custom-btn {
+    padding: 8px 16px; background: var(--navy); color: var(--white); border: none;
+    border-radius: 8px; font-size: 12px; font-weight: 700; cursor: pointer;
+    font-family: 'Nunito Sans', sans-serif; transition: background 0.2s; white-space: nowrap;
+  }
+  .ecg-custom-btn:hover { background: var(--navy-light); }
+  .ecg-custom-hint { font-size: 11px; color: var(--gray-400); margin-top: 5px; }
+  .ecg-laudo-wrap { border-top: 2px solid var(--gold-pale); background: var(--white); padding: 14px 18px 16px; }
+  .ecg-laudo-header { display: flex; align-items: center; justify-content: space-between; font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .ecg-copy-btn {
+    display: flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 700;
+    color: var(--gold); background: none; border: 1.5px solid var(--gold);
+    border-radius: 6px; padding: 4px 10px; cursor: pointer; font-family: 'Nunito Sans', sans-serif; transition: all 0.2s;
+  }
+  .ecg-copy-btn:hover { background: var(--gold-pale); }
+  .ecg-laudo-textarea { min-height: 110px; font-size: 13px; line-height: 1.65; width: 100%; display: block; box-sizing: border-box; }
+
   .prontuario-view { display: none; }
   .prontuario-view.active { display: block; }
 
@@ -1173,6 +1257,180 @@
     .rx-paper { border: none; box-shadow: none; margin: 0; }
     body { background: white; }
   }
+
+  /* ── ESCORES CARDIOLÓGICOS ── */
+  .scores-list-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .score-card-item {
+    border: 1.5px solid var(--gray-200);
+    border-radius: 10px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.18s;
+    background: var(--white);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .score-card-item:hover { border-color: var(--gold); background: var(--gold-pale); transform: translateY(-1px); box-shadow: var(--shadow-sm); }
+  .score-card-title { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .score-card-desc { font-size: 11px; color: var(--gray-400); line-height: 1.4; }
+  .score-card-tag {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 20px;
+    background: rgba(184,150,46,0.12);
+    color: var(--gold);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 4px;
+    width: fit-content;
+  }
+  .score-saved-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+  .score-saved-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    background: rgba(13,27,42,0.03);
+    border-radius: 8px;
+    border-left: 3px solid var(--gold);
+    font-size: 13px;
+  }
+  .score-saved-name { font-weight: 700; color: var(--navy); }
+  .score-saved-result { font-size: 12px; color: var(--gray-600); margin-top: 2px; }
+  .score-saved-del {
+    background: none; border: none; cursor: pointer;
+    color: var(--gray-400); font-size: 18px; padding: 4px;
+    border-radius: 4px; transition: color 0.15s; line-height: 1;
+    display: flex; align-items: center;
+  }
+  .score-saved-del:hover { color: var(--red); }
+
+  /* MODAL ESCORES */
+  #modalEscores { z-index: 1400; }
+  .escores-modal-wrap {
+    background: var(--white);
+    border-radius: 16px;
+    max-width: 640px;
+    width: 95%;
+    max-height: 92vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 64px rgba(13,27,42,0.3);
+    animation: modalIn 0.2s ease;
+  }
+  .escores-modal-header {
+    background: var(--navy);
+    padding: 20px 28px;
+    color: var(--white);
+    border-radius: 16px 16px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .escores-modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  .escores-modal-subtitle { font-size: 12px; color: rgba(255,255,255,0.55); margin-top: 2px; }
+  .escores-modal-body { padding: 24px 28px; }
+  .score-question-block { margin-bottom: 20px; }
+  .score-question-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+  .score-options { display: flex; flex-direction: column; gap: 8px; }
+  .score-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    border: 1.5px solid var(--gray-200);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    color: var(--gray-800);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .score-option:hover { border-color: var(--gold); background: var(--gold-pale); }
+  .score-option.selected { border-color: var(--navy); background: rgba(13,27,42,0.05); font-weight: 600; }
+  .score-option input[type="radio"] { accent-color: var(--navy); width: 15px; height: 15px; flex-shrink: 0; }
+  .score-result-box {
+    background: var(--navy);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .score-result-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--gold-light);
+  }
+  .score-result-label { font-size: 13px; color: rgba(255,255,255,0.6); margin-top: 6px; }
+  .score-result-interpretation {
+    margin-top: 12px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    text-align: center;
+  }
+  .interp-low { background: var(--green-light); color: var(--green); }
+  .interp-mid { background: var(--amber-light); color: var(--amber); }
+  .interp-high { background: var(--red-light); color: var(--red); }
+  .score-progress {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .score-progress-step {
+    flex: 1;
+    height: 4px;
+    border-radius: 2px;
+    background: var(--gray-200);
+    transition: background 0.3s;
+  }
+  .score-progress-step.done { background: var(--gold); }
+  .score-progress-step.active { background: var(--navy); }
+  .score-progress-text { font-size: 11px; color: var(--gray-400); font-weight: 600; white-space: nowrap; }
+  .escores-modal-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 28px 20px;
+    border-top: 1px solid var(--gray-100);
+    gap: 10px;
+  }
+  .score-points-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--gold-pale);
+    color: var(--gold);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1.5px solid var(--gold);
+  }
 </style>
 </head>
 <body>
@@ -1384,6 +1642,95 @@
           </div>
         </div>
 
+        <!-- ESCORES CARDIOLÓGICOS -->
+        <div class="anamnese-section">
+          <div class="anamnese-header" onclick="toggleAnamnese(this)">
+            <span class="anamnese-label"><span class="anamnese-label-dot"></span> 📊 Escores Cardiológicos</span>
+            <svg class="chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="anamnese-content">
+            <div style="margin-bottom:14px">
+              <div style="font-size:12px;color:var(--gray-600);margin-bottom:14px;line-height:1.5">Selecione um escore para calcular. O resultado será salvo automaticamente no prontuário e poderá ser adicionado às comorbidades do paciente.</div>
+              <div class="scores-list-grid">
+                <div class="score-card-item" onclick="openEscore('cha2ds2')">
+                  <div class="score-card-title">CHA₂DS₂-VASc</div>
+                  <div class="score-card-desc">Risco de AVC na Fibrilação Atrial</div>
+                  <div class="score-card-tag">Anticoagulação</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('hasbled')">
+                  <div class="score-card-title">HAS-BLED</div>
+                  <div class="score-card-desc">Risco de sangramento em FA</div>
+                  <div class="score-card-tag">Sangramento</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('grace')">
+                  <div class="score-card-title">GRACE</div>
+                  <div class="score-card-desc">Mortalidade na SCA / IAMSSST</div>
+                  <div class="score-card-tag">Síndrome Coronariana</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('timi_ua')">
+                  <div class="score-card-title">TIMI (UAP/IAMSSST)</div>
+                  <div class="score-card-desc">Risco em angina instável</div>
+                  <div class="score-card-tag">Síndrome Coronariana</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('heart')">
+                  <div class="score-card-title">HEART Score</div>
+                  <div class="score-card-desc">Risco de evento cardíaco major</div>
+                  <div class="score-card-tag">Dor Torácica</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('nyha')">
+                  <div class="score-card-title">Classe NYHA</div>
+                  <div class="score-card-desc">Classificação funcional da IC</div>
+                  <div class="score-card-tag">Insuficiência Cardíaca</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('killip')">
+                  <div class="score-card-title">Killip-Kimball</div>
+                  <div class="score-card-desc">IC no IAM — prognóstico</div>
+                  <div class="score-card-tag">IAM / IC</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('euroscore')">
+                  <div class="score-card-title">EuroSCORE II</div>
+                  <div class="score-card-desc">Mortalidade em cirurgia cardíaca</div>
+                  <div class="score-card-tag">Cirurgia Cardíaca</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('who_fc')">
+                  <div class="score-card-title">WHO / FC — HAP</div>
+                  <div class="score-card-desc">Classe funcional na Hipertensão Pulmonar</div>
+                  <div class="score-card-tag">Hipertensão Pulmonar</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('framingham')">
+                  <div class="score-card-title">Framingham (Risco CV)</div>
+                  <div class="score-card-desc">Risco de evento cardiovascular em 10 anos</div>
+                  <div class="score-card-tag">Prevenção Primária</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('wells_tvp')">
+                  <div class="score-card-title">Wells (TVP)</div>
+                  <div class="score-card-desc">Probabilidade de trombose venosa profunda</div>
+                  <div class="score-card-tag">Tromboembolismo</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('wells_tep')">
+                  <div class="score-card-title">Wells (TEP)</div>
+                  <div class="score-card-desc">Probabilidade de embolia pulmonar</div>
+                  <div class="score-card-tag">Tromboembolismo</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('prevent')">
+                  <div class="score-card-title">PREVENT (ACC/AHA 2023)</div>
+                  <div class="score-card-desc">Risco ASCVD e IC em 10 anos — nova equação ACC</div>
+                  <div class="score-card-tag">Prevenção Primária</div>
+                </div>
+                <div class="score-card-item" onclick="openEscore('diamond_forrester')">
+                  <div class="score-card-title">Diamond-Forrester</div>
+                  <div class="score-card-desc">Probabilidade pré-teste de DAC obstrutiva</div>
+                  <div class="score-card-tag">Dor Torácica</div>
+                </div>
+              </div>
+            </div>
+            <div id="scoresSavedList" style="display:none">
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray-400);margin-bottom:10px">Escores Calculados</div>
+              <div class="score-saved-list" id="scoresSavedItems"></div>
+            </div>
+          </div>
+        </div>
+
         <!-- MEDICAMENTOS EM USO -->
         <div class="anamnese-section">
           <div class="anamnese-header" onclick="toggleAnamnese(this)">
@@ -1525,21 +1872,148 @@
               <div class="form-group"><label class="form-label">BNP / NT-proBNP</label><input type="text" class="form-control" id="f_bnp"></div>
               <div class="form-group"><label class="form-label">Troponina</label><input type="text" class="form-control" id="f_troponina"></div>
             </div>
-            <div class="form-grid grid-2">
-              <div class="form-group">
-                <label class="form-label">ECG</label>
-                <textarea class="form-control" id="f_ecg" placeholder="Ritmo, eixo, alterações..."></textarea>
+            <!-- ══ ECG BUILDER ══ -->
+            <div class="ecg-builder">
+              <div class="ecg-builder-header">
+                <div style="display:flex;align-items:center;gap:10px">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="2 12 5 12 7 6 9 18 11 12 13 12 15 9 17 15 19 12 22 12"/></svg>
+                  <span>📈 Laudo de ECG — Gerador Interativo</span>
+                </div>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <button class="ecg-quick-btn ecg-normal-btn" onclick="ecgSetNormal()">✅ ECG Normal</button>
+                  <button class="ecg-quick-btn ecg-clear-btn" onclick="ecgClear()">🗑 Limpar</button>
+                </div>
               </div>
+
+              <!-- GRUPOS DE ACHADOS -->
+              <div class="ecg-groups">
+
+                <!-- RITMO -->
+                <div class="ecg-group">
+                  <div class="ecg-group-label">🫀 Ritmo</div>
+                  <div class="ecg-chips" id="ecgChips_ritmo">
+                    <button class="ecg-chip" data-group="ritmo" data-key="sinusal" onclick="ecgToggleChip(this)">Ritmo sinusal</button>
+                    <button class="ecg-chip" data-group="ritmo" data-key="sinusal_taqui" onclick="ecgToggleChip(this)">Taquicardia sinusal</button>
+                    <button class="ecg-chip" data-group="ritmo" data-key="sinusal_bradi" onclick="ecgToggleChip(this)">Bradicardia sinusal</button>
+                    <button class="ecg-chip" data-group="ritmo" data-key="fa" onclick="ecgToggleChip(this)">Fibrilação atrial</button>
+                    <button class="ecg-chip" data-group="ritmo" data-key="flutter" onclick="ecgToggleChip(this)">Flutter atrial</button>
+                    <button class="ecg-chip" data-group="ritmo" data-key="tsv" onclick="ecgToggleChip(this)">Taquicardia supraventricular</button>
+                    <button class="ecg-chip" data-group="ritmo" data-key="tvns" onclick="ecgToggleChip(this)">TVNS (taquicardia ventricular não sustentada)</button>
+                    <button class="ecg-chip" data-group="ritmo" data-key="marcopasso" onclick="ecgToggleChip(this)">Ritmo de marca-passo</button>
+                    <button class="ecg-chip" data-group="ritmo" data-key="ectv" onclick="ecgToggleChip(this)">Extrassístoles ventriculares</button>
+                    <button class="ecg-chip" data-group="ritmo" data-key="ectsv" onclick="ecgToggleChip(this)">Extrassístoles supraventriculares</button>
+                  </div>
+                </div>
+
+                <!-- BLOQUEIOS DE RAMO -->
+                <div class="ecg-group">
+                  <div class="ecg-group-label">⚡ Bloqueios de Ramo</div>
+                  <div class="ecg-chips" id="ecgChips_bloq">
+                    <button class="ecg-chip" data-group="bloq" data-key="brd" onclick="ecgToggleChip(this)">BRD completo</button>
+                    <button class="ecg-chip" data-group="bloq" data-key="bre" onclick="ecgToggleChip(this)">BRE completo</button>
+                    <button class="ecg-chip" data-group="bloq" data-key="brdi" onclick="ecgToggleChip(this)">BRD incompleto</button>
+                    <button class="ecg-chip" data-group="bloq" data-key="hbae" onclick="ecgToggleChip(this)">Hemibloqueio anterior esquerdo (HBAE)</button>
+                    <button class="ecg-chip" data-group="bloq" data-key="hbpe" onclick="ecgToggleChip(this)">Hemibloqueio posterior esquerdo (HBPE)</button>
+                    <button class="ecg-chip" data-group="bloq" data-key="bifasci" onclick="ecgToggleChip(this)">Bloqueio bifascicular (BRD + HBAE)</button>
+                    <button class="ecg-chip" data-group="bloq" data-key="wpw" onclick="ecgToggleChip(this)">Pré-excitação ventricular (WPW)</button>
+                  </div>
+                </div>
+
+                <!-- SOBRECARGAS -->
+                <div class="ecg-group">
+                  <div class="ecg-group-label">📐 Sobrecargas / Hipertrofias</div>
+                  <div class="ecg-chips" id="ecgChips_sob">
+                    <button class="ecg-chip" data-group="sob" data-key="sae" onclick="ecgToggleChip(this)">Sobrecarga atrial esquerda (SAE)</button>
+                    <button class="ecg-chip" data-group="sob" data-key="sad" onclick="ecgToggleChip(this)">Sobrecarga atrial direita (SAD)</button>
+                    <button class="ecg-chip" data-group="sob" data-key="sve" onclick="ecgToggleChip(this)">Sobrecarga ventricular esquerda (SVE)</button>
+                    <button class="ecg-chip" data-group="sob" data-key="svd" onclick="ecgToggleChip(this)">Sobrecarga ventricular direita (SVD)</button>
+                    <button class="ecg-chip" data-group="sob" data-key="bive" onclick="ecgToggleChip(this)">Sobrecarga biventricular</button>
+                  </div>
+                </div>
+
+                <!-- ISQUEMIA / ST-T -->
+                <div class="ecg-group">
+                  <div class="ecg-group-label">🔴 Alterações de ST-T / Isquemia</div>
+                  <div class="ecg-chips" id="ecgChips_ist">
+                    <button class="ecg-chip ecg-chip-danger" data-group="ist" data-key="supra_ant" onclick="ecgToggleChip(this)">Supradesnivelamento ST anterior</button>
+                    <button class="ecg-chip ecg-chip-danger" data-group="ist" data-key="supra_inf" onclick="ecgToggleChip(this)">Supradesnivelamento ST inferior</button>
+                    <button class="ecg-chip ecg-chip-danger" data-group="ist" data-key="supra_lat" onclick="ecgToggleChip(this)">Supradesnivelamento ST lateral</button>
+                    <button class="ecg-chip ecg-chip-warn" data-group="ist" data-key="infra" onclick="ecgToggleChip(this)">Infradesnivelamento ST (difuso)</button>
+                    <button class="ecg-chip ecg-chip-warn" data-group="ist" data-key="infra_lat" onclick="ecgToggleChip(this)">Infradesnivelamento ST lateral</button>
+                    <button class="ecg-chip ecg-chip-warn" data-group="ist" data-key="inv_t_ant" onclick="ecgToggleChip(this)">Inversão onda T anterior</button>
+                    <button class="ecg-chip ecg-chip-warn" data-group="ist" data-key="inv_t_lat" onclick="ecgToggleChip(this)">Inversão onda T lateral</button>
+                    <button class="ecg-chip ecg-chip-warn" data-group="ist" data-key="inv_t_inf" onclick="ecgToggleChip(this)">Inversão onda T inferior</button>
+                    <button class="ecg-chip ecg-chip-danger" data-group="ist" data-key="q_ant" onclick="ecgToggleChip(this)">Ondas Q patológicas anteriores (sequela de IAM)</button>
+                    <button class="ecg-chip ecg-chip-danger" data-group="ist" data-key="q_inf" onclick="ecgToggleChip(this)">Ondas Q patológicas inferiores (sequela de IAM)</button>
+                    <button class="ecg-chip ecg-chip-warn" data-group="ist" data-key="alter_inesp" onclick="ecgToggleChip(this)">Alterações inespecíficas da repolarização ventricular</button>
+                  </div>
+                </div>
+
+                <!-- DISTÚRBIOS DE CONDUÇÃO AV -->
+                <div class="ecg-group">
+                  <div class="ecg-group-label">🔗 Distúrbios de Condução AV</div>
+                  <div class="ecg-chips" id="ecgChips_av">
+                    <button class="ecg-chip" data-group="av" data-key="bav1" onclick="ecgToggleChip(this)">BAV 1º grau (PR prolongado)</button>
+                    <button class="ecg-chip ecg-chip-warn" data-group="av" data-key="bav2_1" onclick="ecgToggleChip(this)">BAV 2º grau Mobitz I (Wenckebach)</button>
+                    <button class="ecg-chip ecg-chip-danger" data-group="av" data-key="bav2_2" onclick="ecgToggleChip(this)">BAV 2º grau Mobitz II</button>
+                    <button class="ecg-chip ecg-chip-danger" data-group="av" data-key="bav3" onclick="ecgToggleChip(this)">BAV total (3º grau)</button>
+                    <button class="ecg-chip" data-group="av" data-key="pr_curto" onclick="ecgToggleChip(this)">PR curto</button>
+                  </div>
+                </div>
+
+                <!-- OUTROS ACHADOS -->
+                <div class="ecg-group">
+                  <div class="ecg-group-label">⚙️ Outros Achados</div>
+                  <div class="ecg-chips" id="ecgChips_out">
+                    <button class="ecg-chip ecg-chip-warn" data-group="out" data-key="qtc_longo" onclick="ecgToggleChip(this)">QTc prolongado</button>
+                    <button class="ecg-chip" data-group="out" data-key="baixa_volt" onclick="ecgToggleChip(this)">Baixa voltagem</button>
+                    <button class="ecg-chip" data-group="out" data-key="eixo_esq" onclick="ecgToggleChip(this)">Desvio do eixo para esquerda</button>
+                    <button class="ecg-chip" data-group="out" data-key="eixo_dir" onclick="ecgToggleChip(this)">Desvio do eixo para direita</button>
+                    <button class="ecg-chip" data-group="out" data-key="artefato" onclick="ecgToggleChip(this)">Presença de artefatos</button>
+                    <button class="ecg-chip" data-group="out" data-key="brugada" onclick="ecgToggleChip(this)">Padrão tipo Brugada</button>
+                    <button class="ecg-chip" data-group="out" data-key="digitalis" onclick="ecgToggleChip(this)">Alterações digitálicas</button>
+                    <button class="ecg-chip" data-group="out" data-key="hiperkale" onclick="ecgToggleChip(this)">Padrão sugestivo de hipercalemia</button>
+                    <button class="ecg-chip" data-group="out" data-key="hipokale" onclick="ecgToggleChip(this)">Padrão sugestivo de hipocalemia</button>
+                    <button class="ecg-chip" data-group="out" data-key="pericardite" onclick="ecgToggleChip(this)">Supra difuso / padrão de pericardite</button>
+                  </div>
+                </div>
+
+              </div><!-- /ecg-groups -->
+
+              <!-- ACRESCENTAR ALTERAÇÃO PERSONALIZADA -->
+              <div class="ecg-custom-add">
+                <div class="ecg-custom-label">➕ Acrescentar alteração personalizada ao laudo</div>
+                <div class="ecg-custom-row">
+                  <input type="text" class="ecg-custom-input" id="ecgCustomText" placeholder="Ex: Síndrome de Brugada tipo 1 confirmada...">
+                  <button class="ecg-custom-btn" onclick="ecgAddCustom()">Acrescentar</button>
+                </div>
+                <div class="ecg-custom-hint">Digite a frase exata como deve aparecer no laudo e clique em Acrescentar.</div>
+              </div>
+
+              <!-- LAUDO GERADO -->
+              <div class="ecg-laudo-wrap">
+                <div class="ecg-laudo-header">
+                  <span>📄 Laudo do ECG</span>
+                  <button class="ecg-copy-btn" onclick="ecgCopyLaudo(this)">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+                    Copiar
+                  </button>
+                </div>
+                <textarea class="form-control ecg-laudo-textarea" id="f_ecg" placeholder="Selecione os achados acima para gerar o laudo automaticamente, ou digite diretamente aqui..." rows="6"></textarea>
+              </div>
+
+            </div><!-- /ecg-builder -->
+
+            <div class="form-grid grid-2" style="margin-top:14px">
               <div class="form-group">
                 <label class="form-label">Ecocardiograma</label>
                 <textarea class="form-control" id="f_eco" placeholder="FEVE, disfunções, valvopatias..."></textarea>
               </div>
+              <div class="form-group">
+                <label class="form-label">Outros Exames / Resultados</label>
+                <textarea class="form-control" id="f_outrosExames"></textarea>
+              </div>
             </div>
-            <div class="form-group" style="margin-top:14px">
-              <label class="form-label">Outros Exames / Resultados</label>
-              <textarea class="form-control" id="f_outrosExames"></textarea>
-            </div>
-          </div>
         </div>
 
         <!-- HÁBITOS E VÍCIOS -->
@@ -2868,5 +3342,605 @@ renderRxMeds();
 // ══════════════════════════════════════════════════
 renderAgenda();
 </script>
+<!-- ══ MODAL: ESCORES CARDIOLÓGICOS ══ -->
+<div class="modal-overlay" id="modalEscores">
+  <div class="escores-modal-wrap">
+    <div class="escores-modal-header">
+      <div>
+        <div class="escores-modal-title" id="escoreModalTitle">Escore</div>
+        <div class="escores-modal-subtitle" id="escoreModalSubtitle">Responda as perguntas abaixo</div>
+      </div>
+      <button class="rx-print-close-btn" onclick="closeModal('modalEscores')">✕</button>
+    </div>
+    <div class="escores-modal-body" id="escoreModalBody">
+      <!-- filled by JS -->
+    </div>
+    <div class="escores-modal-footer" id="escoreModalFooter">
+      <div class="score-points-badge" id="escorePontosLive">Pontos: 0</div>
+      <div style="display:flex;gap:10px;align-items:center">
+        <button class="btn btn-outline" onclick="closeModal('modalEscores')" style="font-size:13px">Cancelar</button>
+        <button class="btn btn-gold" id="escoreCalcBtn" onclick="calcularEscore()" style="font-size:13px">Calcular Escore</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════
+// ESCORES CARDIOLÓGICOS
+// ══════════════════════════════════════════════════
+
+let currentEscoreKey = null;
+let savedScores = {};
+
+const ESCORES = {
+  cha2ds2: {
+    title: 'CHA₂DS₂-VASc',
+    subtitle: 'Risco de AVC / TEE na Fibrilação Atrial',
+    tag: 'Anticoagulação',
+    questions: [
+      { id: 'ic_car', label: 'Insuficiência cardíaca ou FEVE ≤40%?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'has', label: 'Hipertensão arterial sistêmica?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'idade', label: 'Idade?', options: [{ label: '< 65 anos', pts: 0 }, { label: '65–74 anos', pts: 1 }, { label: '≥ 75 anos', pts: 2 }] },
+      { id: 'dm', label: 'Diabetes mellitus?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'avc', label: 'AVC, AIT ou embolia prévia?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 2 }] },
+      { id: 'vasc', label: 'Doença vascular (IAM prévio, DAP, placa aórtica)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'sexo', label: 'Sexo feminino?', options: [{ label: 'Masculino', pts: 0 }, { label: 'Feminino', pts: 1 }] },
+    ],
+    interpret: (pts) => {
+      if (pts === 0) return { text: 'Risco muito baixo — anticoagulação não indicada', cls: 'interp-low' };
+      if (pts === 1) return { text: 'Risco baixo-moderado — considerar anticoagulação (especialmente ♂)', cls: 'interp-mid' };
+      return { text: 'Anticoagulação indicada (se sem contraindicação)', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `CHA₂DS₂-VASc: ${pts} pts — ${r.text}`
+  },
+  hasbled: {
+    title: 'HAS-BLED',
+    subtitle: 'Risco de sangramento maior em pacientes em anticoagulação',
+    tag: 'Sangramento',
+    questions: [
+      { id: 'hiper', label: 'H — Hipertensão não controlada (PAS > 160 mmHg)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'renal', label: 'A — Disfunção renal (creatinina > 2,26 mg/dL ou diálise)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'hepat', label: 'A — Disfunção hepática (bilirrubina > 2× normal ou transaminases > 3×)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'savc', label: 'S — AVC prévio?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'bleed', label: 'B — Sangramento prévio ou predisposição?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'inr', label: 'L — INR lábil (tempo em faixa < 60%)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'idoso', label: 'E — Idade > 65 anos?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'drugs', label: 'D — Uso de AINEs, antiplaquetários ou álcool?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim (um)', pts: 1 }, { label: 'Sim (ambos)', pts: 2 }] },
+    ],
+    interpret: (pts) => {
+      if (pts <= 2) return { text: 'Risco baixo de sangramento', cls: 'interp-low' };
+      if (pts === 3) return { text: 'Risco moderado — atenção e revisão de fatores modificáveis', cls: 'interp-mid' };
+      return { text: 'Risco alto de sangramento — revisão cuidadosa da anticoagulação', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `HAS-BLED: ${pts} pts — ${r.text}`
+  },
+  grace: {
+    title: 'GRACE Score',
+    subtitle: 'Estimativa de mortalidade hospitalar na SCA',
+    tag: 'Síndrome Coronariana Aguda',
+    questions: [
+      { id: 'idade', label: 'Faixa etária?', options: [{ label: '< 40 anos', pts: 0 }, { label: '40–49 anos', pts: 18 }, { label: '50–59 anos', pts: 36 }, { label: '60–69 anos', pts: 55 }, { label: '70–79 anos', pts: 73 }, { label: '80–89 anos', pts: 91 }, { label: '≥ 90 anos', pts: 100 }] },
+      { id: 'fc', label: 'Frequência cardíaca?', options: [{ label: '< 70 bpm', pts: 0 }, { label: '70–89 bpm', pts: 7 }, { label: '90–109 bpm', pts: 13 }, { label: '110–149 bpm', pts: 23 }, { label: '150–199 bpm', pts: 36 }, { label: '≥ 200 bpm', pts: 46 }] },
+      { id: 'pas', label: 'Pressão arterial sistólica?', options: [{ label: '< 80 mmHg', pts: 63 }, { label: '80–99 mmHg', pts: 58 }, { label: '100–119 mmHg', pts: 47 }, { label: '120–139 mmHg', pts: 37 }, { label: '140–159 mmHg', pts: 26 }, { label: '160–199 mmHg', pts: 11 }, { label: '≥ 200 mmHg', pts: 0 }] },
+      { id: 'creat', label: 'Creatinina sérica?', options: [{ label: '0–0,39 mg/dL', pts: 2 }, { label: '0,4–0,79 mg/dL', pts: 5 }, { label: '0,8–1,19 mg/dL', pts: 8 }, { label: '1,2–1,59 mg/dL', pts: 11 }, { label: '1,6–1,99 mg/dL', pts: 14 }, { label: '2,0–3,99 mg/dL', pts: 23 }, { label: '≥ 4,0 mg/dL', pts: 31 }] },
+      { id: 'killip', label: 'Killip na admissão?', options: [{ label: 'I (sem sinais de IC)', pts: 0 }, { label: 'II (estertores/PVJ)', pts: 21 }, { label: 'III (edema agudo)', pts: 43 }, { label: 'IV (choque)', pts: 64 }] },
+      { id: 'parada', label: 'Parada cardiorrespiratória na admissão?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 43 }] },
+      { id: 'desvst', label: 'Desvio do segmento ST?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 30 }] },
+      { id: 'enzimas', label: 'Enzimas cardíacas elevadas?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 15 }] },
+    ],
+    interpret: (pts) => {
+      if (pts <= 108) return { text: 'Risco baixo (< 1% mort. hospitalar)', cls: 'interp-low' };
+      if (pts <= 140) return { text: 'Risco intermediário (1–3% mort. hospitalar)', cls: 'interp-mid' };
+      return { text: 'Risco alto (> 3% mort. hospitalar) — estratégia invasiva precoce', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `GRACE: ${pts} pts — ${r.text}`
+  },
+  timi_ua: {
+    title: 'TIMI para UAP / IAMSSST',
+    subtitle: 'Risco de eventos isquêmicos em 14 dias',
+    tag: 'Síndrome Coronariana',
+    questions: [
+      { id: 'idade65', label: 'Idade ≥ 65 anos?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'frcv', label: '≥ 3 fatores de risco para DAC (HAS, DM, dislipidemia, tabagismo, HF)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'dac_prev', label: 'DAC conhecida (estenose coronária ≥ 50%)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'aas', label: 'Uso de AAS nos últimos 7 dias?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'angina', label: '≥ 2 episódios de angina em repouso nas últimas 24h?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'st', label: 'Desvio do segmento ST ≥ 0,5 mm?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'enzimas', label: 'Marcadores cardíacos positivos (troponina / CK-MB)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+    ],
+    interpret: (pts) => {
+      if (pts <= 2) return { text: 'Risco baixo (4,7% eventos em 14d)', cls: 'interp-low' };
+      if (pts <= 4) return { text: 'Risco intermediário (13–20% eventos em 14d)', cls: 'interp-mid' };
+      return { text: 'Risco alto (26–41% eventos em 14d)', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `TIMI-UAP: ${pts}/7 — ${r.text}`
+  },
+  heart: {
+    title: 'HEART Score',
+    subtitle: 'Probabilidade de MACE em paciente com dor torácica',
+    tag: 'Dor Torácica',
+    questions: [
+      { id: 'hist', label: 'H — História (característica da dor)?', options: [{ label: 'Pouco suspeita de SCA', pts: 0 }, { label: 'Moderadamente suspeita', pts: 1 }, { label: 'Altamente suspeita', pts: 2 }] },
+      { id: 'ecg', label: 'E — ECG?', options: [{ label: 'Normal', pts: 0 }, { label: 'Inespecífico (BRE, HVE, alterações digitálicas)', pts: 1 }, { label: 'Supradesnivelamento / BBRE novo / alterações isquêmicas', pts: 2 }] },
+      { id: 'age', label: 'A — Idade?', options: [{ label: '< 45 anos', pts: 0 }, { label: '45–64 anos', pts: 1 }, { label: '≥ 65 anos', pts: 2 }] },
+      { id: 'risk', label: 'R — Fatores de risco?', options: [{ label: 'Nenhum fator de risco', pts: 0 }, { label: '1–2 fatores ou obesidade', pts: 1 }, { label: '≥ 3 fatores ou DAC / DM conhecidos', pts: 2 }] },
+      { id: 'trop', label: 'T — Troponina?', options: [{ label: '≤ limite normal', pts: 0 }, { label: '1–3× limite normal', pts: 1 }, { label: '> 3× limite normal', pts: 2 }] },
+    ],
+    interpret: (pts) => {
+      if (pts <= 3) return { text: 'Baixo risco — MACE em < 2% (considerar alta)', cls: 'interp-low' };
+      if (pts <= 6) return { text: 'Risco moderado (~12–17% MACE) — observação e investigação', cls: 'interp-mid' };
+      return { text: 'Alto risco (≥ 50% MACE) — admissão e estratégia invasiva precoce', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `HEART Score: ${pts}/10 — ${r.text}`
+  },
+  nyha: {
+    title: 'Classificação NYHA',
+    subtitle: 'Capacidade funcional na Insuficiência Cardíaca',
+    tag: 'Insuficiência Cardíaca',
+    questions: [
+      { id: 'classe', label: 'Qual a limitação funcional do paciente?', options: [
+        { label: 'Classe I — Sem limitação. Atividades habituais sem sintomas.', pts: 1 },
+        { label: 'Classe II — Leve limitação. Sintomas em esforços moderados.', pts: 2 },
+        { label: 'Classe III — Limitação importante. Sintomas em esforços leves.', pts: 3 },
+        { label: 'Classe IV — Incapaz de qualquer atividade. Sintomas em repouso.', pts: 4 },
+      ]}
+    ],
+    interpret: (pts) => {
+      const classes = ['', 'Classe I — Assintomático', 'Classe II — Leve', 'Classe III — Moderada a grave', 'Classe IV — Muito grave / Repouso'];
+      const cls = ['', 'interp-low', 'interp-low', 'interp-mid', 'interp-high'];
+      return { text: classes[pts] || '—', cls: cls[pts] || '' };
+    },
+    comorbTag: (pts, r) => `NYHA ${['','I','II','III','IV'][pts]} — ${r.text}`
+  },
+  killip: {
+    title: 'Killip-Kimball',
+    subtitle: 'Classificação de IC no contexto de IAM',
+    tag: 'IAM / IC',
+    questions: [
+      { id: 'killip', label: 'Achados clínicos no IAM?', options: [
+        { label: 'Killip I — Sem sinais de IC', pts: 1 },
+        { label: 'Killip II — Estertores basais, B3, hipertensão venosa jugular', pts: 2 },
+        { label: 'Killip III — Edema agudo de pulmão (estertores > 50% do pulmão)', pts: 3 },
+        { label: 'Killip IV — Choque cardiogênico (hipotensão, oligúria, cianose)', pts: 4 },
+      ]}
+    ],
+    interpret: (pts) => {
+      const desc = ['', 'Mortalidade ~6%', 'Mortalidade ~17%', 'Mortalidade ~38%', 'Mortalidade ~81%'];
+      const cls = ['', 'interp-low', 'interp-mid', 'interp-high', 'interp-high'];
+      return { text: desc[pts] || '—', cls: cls[pts] || '' };
+    },
+    comorbTag: (pts, r) => `Killip ${['','I','II','III','IV'][pts]} — ${r.text}`
+  },
+  euroscore: {
+    title: 'EuroSCORE II (simplificado)',
+    subtitle: 'Risco de mortalidade em cirurgia cardíaca',
+    tag: 'Cirurgia Cardíaca',
+    questions: [
+      { id: 'idade', label: 'Idade?', options: [{ label: '< 60 anos', pts: 0 }, { label: '60–69 anos', pts: 1 }, { label: '70–74 anos', pts: 2 }, { label: '75–79 anos', pts: 3 }, { label: '≥ 80 anos', pts: 5 }] },
+      { id: 'sexo', label: 'Sexo?', options: [{ label: 'Masculino', pts: 0 }, { label: 'Feminino', pts: 1 }] },
+      { id: 'drc', label: 'Doença renal crônica?', options: [{ label: 'Sem DRC', pts: 0 }, { label: 'Moderada (ClCr 50–85 mL/min)', pts: 1 }, { label: 'Grave (ClCr < 50) ou diálise', pts: 3 }] },
+      { id: 'daep', label: 'Doença arterial extra-pulmonar?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 2 }] },
+      { id: 'dp', label: 'Disfunção pulmonar (DPOC ou BD)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'feve', label: 'FEVE?', options: [{ label: '> 50%', pts: 0 }, { label: '31–50%', pts: 1 }, { label: '21–30%', pts: 3 }, { label: '≤ 20%', pts: 4 }] },
+      { id: 'urgencia', label: 'Urgência / emergência?', options: [{ label: 'Eletivo', pts: 0 }, { label: 'Urgente', pts: 2 }, { label: 'Emergência / salvamento', pts: 5 }] },
+    ],
+    interpret: (pts) => {
+      if (pts <= 3) return { text: 'Risco baixo (< 2% mortalidade cirúrgica estimada)', cls: 'interp-low' };
+      if (pts <= 7) return { text: 'Risco intermediário (2–5% mortalidade estimada)', cls: 'interp-mid' };
+      return { text: 'Risco alto (> 5% mortalidade estimada)', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `EuroSCORE II simplif.: ${pts} pts — ${r.text}`
+  },
+  who_fc: {
+    title: 'WHO / Classe Funcional (Hipertensão Pulmonar)',
+    subtitle: 'Classificação funcional adaptada pela OMS para HAP',
+    tag: 'Hipertensão Pulmonar',
+    questions: [
+      { id: 'who', label: 'Limitação funcional do paciente com HAP?', options: [
+        { label: 'WHO I — Sem limitação. Atividades habituais sem sintomas.', pts: 1 },
+        { label: 'WHO II — Leve limitação. Sintomas em esforços habituais.', pts: 2 },
+        { label: 'WHO III — Limitação importante. Sintomas em esforços mínimos.', pts: 3 },
+        { label: 'WHO IV — Incapaz. Sintomas em repouso. Insuficiência VD manifesta.', pts: 4 },
+      ]}
+    ],
+    interpret: (pts) => {
+      const desc = ['', 'Baixo risco de progressão', 'Risco intermediário', 'Risco alto — escalonar tratamento', 'Muito alto risco — considerar transplante'];
+      const cls = ['', 'interp-low', 'interp-low', 'interp-mid', 'interp-high'];
+      return { text: desc[pts] || '—', cls: cls[pts] || '' };
+    },
+    comorbTag: (pts, r) => `WHO FC ${['','I','II','III','IV'][pts]} (HAP) — ${r.text}`
+  },
+  framingham: {
+    title: 'Risco de Framingham (simplificado)',
+    subtitle: 'Risco cardiovascular em 10 anos (prevenção primária)',
+    tag: 'Prevenção Primária',
+    questions: [
+      { id: 'idade', label: 'Faixa etária?', options: [{ label: '< 40 anos', pts: 0 }, { label: '40–49 anos', pts: 2 }, { label: '50–59 anos', pts: 4 }, { label: '60–69 anos', pts: 6 }, { label: '70–79 anos', pts: 8 }, { label: '≥ 80 anos', pts: 10 }] },
+      { id: 'sexo', label: 'Sexo?', options: [{ label: 'Feminino', pts: 0 }, { label: 'Masculino', pts: 2 }] },
+      { id: 'col', label: 'Colesterol total?', options: [{ label: '< 160 mg/dL', pts: 0 }, { label: '160–199 mg/dL', pts: 1 }, { label: '200–239 mg/dL', pts: 2 }, { label: '240–279 mg/dL', pts: 3 }, { label: '≥ 280 mg/dL', pts: 4 }] },
+      { id: 'hdl', label: 'HDL-colesterol?', options: [{ label: '≥ 60 mg/dL', pts: -1 }, { label: '50–59 mg/dL', pts: 0 }, { label: '40–49 mg/dL', pts: 1 }, { label: '< 40 mg/dL', pts: 2 }] },
+      { id: 'pas', label: 'Pressão arterial sistólica?', options: [{ label: '< 120 mmHg', pts: 0 }, { label: '120–129 mmHg', pts: 1 }, { label: '130–139 mmHg', pts: 2 }, { label: '140–159 mmHg', pts: 3 }, { label: '≥ 160 mmHg', pts: 4 }] },
+      { id: 'tabaco', label: 'Tabagismo atual?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 2 }] },
+      { id: 'dm', label: 'Diabetes mellitus?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 2 }] },
+    ],
+    interpret: (pts) => {
+      if (pts <= 4) return { text: 'Risco baixo (< 10% em 10 anos)', cls: 'interp-low' };
+      if (pts <= 8) return { text: 'Risco intermediário (10–20% em 10 anos)', cls: 'interp-mid' };
+      return { text: 'Risco alto (> 20% em 10 anos) — iniciar estatina e controle agressivo', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `Framingham: ${pts} pts — ${r.text}`
+  },
+  wells_tvp: {
+    title: 'Wells Score (TVP)',
+    subtitle: 'Probabilidade pré-teste de trombose venosa profunda',
+    tag: 'Tromboembolismo',
+    questions: [
+      { id: 'cancer', label: 'Neoplasia ativa (tratamento em curso ou nos últimos 6 meses)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'paral', label: 'Paralisia, paresia ou imobilização recente do membro inferior?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'acamado', label: 'Acamado > 3 dias ou grande cirurgia há < 12 semanas?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'dor', label: 'Dor localizada no trajeto venoso profundo?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'edema', label: 'Edema em toda a perna?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'panturl', label: 'Panturrilha > 3 cm em relação ao outro lado?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'cacifo', label: 'Edema cacifo somente na perna sintomática?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'cvc', label: 'Circulação colateral superficial (veias não varicosas)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'tvp_prev', label: 'TVP prévia?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'alt_diag', label: 'Diagnóstico alternativo mais ou igualmente provável?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: -2 }] },
+    ],
+    interpret: (pts) => {
+      if (pts <= 0) return { text: 'Baixa probabilidade de TVP (~5%)', cls: 'interp-low' };
+      if (pts <= 2) return { text: 'Probabilidade moderada de TVP (~17%)', cls: 'interp-mid' };
+      return { text: 'Alta probabilidade de TVP (~53%) — eco doppler e anticoagulação', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `Wells TVP: ${pts} pts — ${r.text}`
+  },
+  wells_tep: {
+    title: 'Wells Score (TEP)',
+    subtitle: 'Probabilidade pré-teste de embolia pulmonar',
+    tag: 'Tromboembolismo',
+    questions: [
+      { id: 'tvp_sinais', label: 'Sinais e sintomas clínicos de TVP?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 3 }] },
+      { id: 'diag_alt', label: 'Diagnóstico alternativo menos provável que TEP?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 3 }] },
+      { id: 'fc100', label: 'Frequência cardíaca > 100 bpm?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1.5 }] },
+      { id: 'imob', label: 'Imobilização ≥ 3 dias ou cirurgia nas últimas 4 semanas?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1.5 }] },
+      { id: 'tvp_prev', label: 'TVP ou TEP prévio?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1.5 }] },
+      { id: 'hemopt', label: 'Hemoptise?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+      { id: 'cancer', label: 'Neoplasia ativa?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+    ],
+    interpret: (pts) => {
+      if (pts < 2) return { text: 'Baixa probabilidade de TEP (~1,3%)', cls: 'interp-low' };
+      if (pts <= 6) return { text: 'Probabilidade moderada de TEP (~16%)', cls: 'interp-mid' };
+      return { text: 'Alta probabilidade de TEP (~38%) — TC de tórax e anticoagulação', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `Wells TEP: ${pts} pts — ${r.text}`
+  },
+  prevent: {
+    title: 'Escore PREVENT (ACC/AHA 2023)',
+    subtitle: 'Risco cardiovascular em 10 anos — nova equação ACC/AHA (Predicting Risk of CVD EVENTs)',
+    tag: 'Prevenção Primária',
+    questions: [
+      { id: 'sexo', label: 'Sexo biológico?', options: [{ label: 'Feminino', pts: 0 }, { label: 'Masculino', pts: 1 }] },
+      { id: 'idade', label: 'Faixa etária?', options: [{ label: '30–39 anos', pts: 0 }, { label: '40–49 anos', pts: 2 }, { label: '50–59 anos', pts: 4 }, { label: '60–69 anos', pts: 6 }, { label: '70–79 anos', pts: 8 }] },
+      { id: 'tabaco', label: 'Tabagismo atual?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 2 }] },
+      { id: 'dm', label: 'Diabetes mellitus?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 2 }] },
+      { id: 'has', label: 'Hipertensão arterial sistêmica?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim, controlada', pts: 1 }, { label: 'Sim, não controlada (PAS ≥ 140 mmHg)', pts: 3 }] },
+      { id: 'ldl', label: 'LDL-colesterol?', options: [{ label: '< 100 mg/dL', pts: 0 }, { label: '100–129 mg/dL', pts: 1 }, { label: '130–159 mg/dL', pts: 2 }, { label: '160–189 mg/dL', pts: 3 }, { label: '≥ 190 mg/dL', pts: 4 }] },
+      { id: 'egfr', label: 'TFGe (função renal estimada)?', options: [{ label: '≥ 60 mL/min/1,73m² (normal / G1-G2)', pts: 0 }, { label: '45–59 mL/min/1,73m² (G3a)', pts: 1 }, { label: '< 45 mL/min/1,73m² (G3b-G5)', pts: 2 }] },
+      { id: 'obesidade', label: 'Obesidade (IMC ≥ 30 kg/m²)?', options: [{ label: 'Não', pts: 0 }, { label: 'Sim', pts: 1 }] },
+    ],
+    interpret: (pts) => {
+      if (pts <= 3) return { text: 'Risco baixo ASCVD (< 5% em 10 anos) — foco em estilo de vida', cls: 'interp-low' };
+      if (pts <= 6) return { text: 'Risco borderline (5–7,4%) — discutir uso de estatina de intensidade moderada', cls: 'interp-low' };
+      if (pts <= 10) return { text: 'Risco intermediário (7,5–19,9%) — estatina de intensidade moderada a alta indicada', cls: 'interp-mid' };
+      return { text: 'Risco alto ASCVD (≥ 20%) — estatina de alta intensidade + controle agressivo de todos os FRCV', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `PREVENT ACC/AHA: ${pts} pts — ${r.text}`
+  },
+  diamond_forrester: {
+    title: 'Critérios de Diamond-Forrester',
+    subtitle: 'Probabilidade pré-teste de doença arterial coronariana obstrutiva',
+    tag: 'Dor Torácica',
+    questions: [
+      { id: 'sexo', label: 'Sexo biológico?', options: [{ label: 'Feminino', pts: 0 }, { label: 'Masculino', pts: 1 }] },
+      { id: 'idade', label: 'Faixa etária?', options: [{ label: '30–39 anos', pts: 0 }, { label: '40–49 anos', pts: 1 }, { label: '50–59 anos', pts: 2 }, { label: '60–69 anos', pts: 3 }, { label: '≥ 70 anos', pts: 4 }] },
+      { id: 'sintoma', label: 'Tipo de dor / sintoma predominante?', options: [
+        { label: 'Assintomático (exame de rotina)', pts: 0 },
+        { label: 'Dor não-anginosa (sem relação com esforço, sem alívio com nitrato)', pts: 1 },
+        { label: 'Angina atípica (2 dos 3 critérios clássicos)', pts: 3 },
+        { label: 'Angina típica (precordial + piora ao esforço + alívio com nitrato)', pts: 5 },
+      ]},
+      { id: 'frcv', label: 'Fatores de risco cardiovascular adicionais?', options: [
+        { label: 'Nenhum fator adicional', pts: 0 },
+        { label: '1 fator (HAS, DM, tabagismo ou dislipidemia)', pts: 1 },
+        { label: '≥ 2 fatores ou história familiar de DAC precoce', pts: 2 },
+      ]},
+    ],
+    interpret: (pts) => {
+      if (pts <= 2) return { text: 'PPT BAIXA de DAC (< 15%) — rastreio não invasivo; considerar cálcio coronário', cls: 'interp-low' };
+      if (pts <= 6) return { text: 'PPT INTERMEDIÁRIA de DAC (15–65%) — angiotomografia coronária ou cintilografia miocárdica indicadas', cls: 'interp-mid' };
+      return { text: 'PPT ALTA de DAC (> 65%) — considerar cineangiocoronariografia direta sem teste funcional prévio', cls: 'interp-high' };
+    },
+    comorbTag: (pts, r) => `Diamond-Forrester: ${pts} pts — ${r.text}`
+  },
+};
+
+let escoreAnswers = {};
+let escoreResult = null;
+
+function openEscore(key) {
+  currentEscoreKey = key;
+  escoreAnswers = {};
+  escoreResult = null;
+  const e = ESCORES[key];
+  document.getElementById('escoreModalTitle').textContent = e.title;
+  document.getElementById('escoreModalSubtitle').textContent = e.subtitle;
+  document.getElementById('escoreCalcBtn').style.display = '';
+  renderEscoreQuestions();
+  document.getElementById('modalEscores').classList.add('open');
+}
+
+function renderEscoreQuestions() {
+  const e = ESCORES[currentEscoreKey];
+  const total = e.questions.length;
+  const answered = Object.keys(escoreAnswers).length;
+
+  // Progress bar
+  let progHtml = `<div class="score-progress">`;
+  for (let i = 0; i < total; i++) {
+    const qid = e.questions[i].id;
+    const isDone = escoreAnswers[qid] !== undefined;
+    progHtml += `<div class="score-progress-step ${isDone ? 'done' : (i === answered ? 'active' : '')}"></div>`;
+  }
+  progHtml += `<span class="score-progress-text">${answered}/${total}</span></div>`;
+
+  // Questions
+  let questHtml = e.questions.map((q, qi) => {
+    const opts = q.options.map(opt => {
+      const sel = escoreAnswers[q.id] !== undefined && escoreAnswers[q.id].pts === opt.pts && escoreAnswers[q.id].label === opt.label;
+      return `<label class="score-option ${sel ? 'selected' : ''}" onclick="selectEscoreOpt('${q.id}', ${opt.pts}, '${opt.label.replace(/'/g, "\\'")}', this)">
+        <input type="radio" name="score_${q.id}" ${sel ? 'checked' : ''} style="pointer-events:none">
+        ${opt.label}${opt.pts !== 0 ? ` <span style="margin-left:auto;font-size:11px;color:var(--gold);font-weight:700;white-space:nowrap">${opt.pts > 0 ? '+' : ''}${opt.pts} pts</span>` : ''}
+      </label>`;
+    }).join('');
+    return `<div class="score-question-block">
+      <div class="score-question-label">${qi + 1}. ${q.label}</div>
+      <div class="score-options">${opts}</div>
+    </div>`;
+  }).join('');
+
+  document.getElementById('escoreModalBody').innerHTML = progHtml + questHtml;
+  updateEscoreLivePts();
+}
+
+function selectEscoreOpt(qid, pts, label, el) {
+  escoreAnswers[qid] = { pts, label };
+  // Re-render to update selected states
+  renderEscoreQuestions();
+}
+
+function updateEscoreLivePts() {
+  const total = Object.values(escoreAnswers).reduce((s, a) => s + a.pts, 0);
+  document.getElementById('escorePontosLive').textContent = `Pontos: ${total}`;
+}
+
+function calcularEscore() {
+  const e = ESCORES[currentEscoreKey];
+  const total = e.questions.length;
+  const answered = Object.keys(escoreAnswers).length;
+  if (answered < total) {
+    showToast(`Responda todas as ${total} perguntas para calcular.`);
+    return;
+  }
+  const pts = Object.values(escoreAnswers).reduce((s, a) => s + a.pts, 0);
+  const interp = e.interpret(pts);
+  escoreResult = { pts, interp, key: currentEscoreKey, title: e.title };
+
+  // Show result
+  document.getElementById('escoreModalBody').innerHTML = `
+    <div class="score-result-box">
+      <div class="score-result-label">Pontuação Total</div>
+      <div class="score-result-value">${pts}</div>
+      <div class="score-result-label" style="margin-top:8px">${e.title}</div>
+    </div>
+    <div class="score-result-interpretation ${interp.cls}">${interp.text}</div>
+    <div style="margin-top:20px;font-size:12px;color:var(--gray-400);line-height:1.6">
+      <strong style="color:var(--navy)">Detalhamento das respostas:</strong><br>
+      ${e.questions.map(q => `• <strong>${q.label}</strong>: ${escoreAnswers[q.id]?.label || '—'} (${escoreAnswers[q.id]?.pts >= 0 ? '+' : ''}${escoreAnswers[q.id]?.pts ?? 0} pts)`).join('<br>')}
+    </div>`;
+  document.getElementById('escoreCalcBtn').style.display = 'none';
+  document.getElementById('escorePontosLive').textContent = `${pts} pts`;
+
+  // Replace footer
+  document.getElementById('escoreModalFooter').innerHTML = `
+    <button class="btn btn-outline" onclick="openEscore('${currentEscoreKey}')" style="font-size:13px">↩ Refazer</button>
+    <div style="display:flex;gap:10px">
+      <button class="btn btn-outline" onclick="closeModal('modalEscores')" style="font-size:13px">Fechar</button>
+      <button class="btn btn-gold" onclick="salvarEscore()" style="font-size:13px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/></svg>
+        Salvar no Prontuário
+      </button>
+    </div>`;
+}
+
+function salvarEscore() {
+  if (!escoreResult) return;
+  const e = ESCORES[escoreResult.key];
+  const tag = e.comorbTag(escoreResult.pts, escoreResult.interp);
+  const id = 'sc_' + Date.now();
+  savedScores[id] = { id, tag, title: escoreResult.title, pts: escoreResult.pts, interp: escoreResult.interp.text };
+  renderSavedScores();
+
+  // Append to Outras Comorbidades field
+  const field = document.getElementById('f_outrasComorbidades');
+  if (field) {
+    const cur = field.value.trim();
+    field.value = cur ? cur + ' | ' + tag : tag;
+  }
+
+  closeModal('modalEscores');
+  showToast(`✅ ${escoreResult.title} salvo no prontuário!`);
+}
+
+function renderSavedScores() {
+  const keys = Object.keys(savedScores);
+  const wrap = document.getElementById('scoresSavedList');
+  const items = document.getElementById('scoresSavedItems');
+  if (keys.length === 0) { wrap.style.display = 'none'; return; }
+  wrap.style.display = 'block';
+  items.innerHTML = keys.map(id => {
+    const s = savedScores[id];
+    return `<div class="score-saved-item">
+      <div>
+        <div class="score-saved-name">${s.title} — ${s.pts} pts</div>
+        <div class="score-saved-result">${s.interp}</div>
+      </div>
+      <button class="score-saved-del" onclick="deleteSavedScore('${id}')" title="Remover">✕</button>
+    </div>`;
+  }).join('');
+}
+
+function deleteSavedScore(id) {
+  delete savedScores[id];
+  renderSavedScores();
+}
+
+// ══════════════════════════════════════════════════
+//  ECG LAUDO BUILDER
+// ══════════════════════════════════════════════════
+
+const ECG_ACHADOS = {
+  // RITMO
+  sinusal:     'Ritmo sinusal regular.',
+  sinusal_taqui: 'Taquicardia sinusal.',
+  sinusal_bradi: 'Bradicardia sinusal.',
+  fa:          'Fibrilação atrial com resposta ventricular variável.',
+  flutter:     'Flutter atrial com condução variável.',
+  tsv:         'Taquicardia supraventricular.',
+  tvns:        'Taquicardia ventricular não sustentada (TVNS).',
+  marcopasso:  'Ritmo de marca-passo, com presença de espículas de estimulação.',
+  ectv:        'Extrassístoles ventriculares presentes.',
+  ectsv:       'Extrassístoles supraventriculares presentes.',
+  // BLOQUEIOS
+  brd:         'Bloqueio de ramo direito (BRD) completo — QRS ≥ 120 ms, rSR\' em V1, S largo em V5-V6.',
+  bre:         'Bloqueio de ramo esquerdo (BRE) completo — QRS ≥ 120 ms, QS em V1, R largo e entalhado em V5-V6.',
+  brdi:        'Bloqueio de ramo direito incompleto.',
+  hbae:        'Hemibloqueio anterior esquerdo (HBAE) — desvio do eixo elétrico para a esquerda (entre -45° e -90°).',
+  hbpe:        'Hemibloqueio posterior esquerdo (HBPE) — desvio do eixo elétrico para a direita.',
+  bifasci:     'Bloqueio bifascicular: BRD completo associado a hemibloqueio anterior esquerdo (HBAE).',
+  wpw:         'Pré-excitação ventricular (síndrome de Wolff-Parkinson-White) — delta wave e PR curto evidentes.',
+  // SOBRECARGAS
+  sae:         'Sobrecarga atrial esquerda (SAE) — onda P bífida e entalhada.',
+  sad:         'Sobrecarga atrial direita (SAD) — onda P apiculada com amplitude aumentada.',
+  sve:         'Sobrecarga ventricular esquerda (SVE) — critérios voltamétricos de hipertrofia com alterações secundárias da repolarização.',
+  svd:         'Sobrecarga ventricular direita (SVD) — desvio do eixo para a direita e padrão de strain em derivações direitas.',
+  bive:        'Sobrecarga biventricular.',
+  // ISQUEMIA / ST-T
+  supra_ant:   'Supradesnivelamento do segmento ST nas derivações anteriores (V1–V4), com padrão sugestivo de lesão isquêmica transmural/IAMCSST anterior. Avaliação imediata recomendada.',
+  supra_inf:   'Supradesnivelamento do segmento ST nas derivações inferiores (DII, DIII, aVF), sugestivo de IAMCSST inferior. Avaliação imediata recomendada.',
+  supra_lat:   'Supradesnivelamento do segmento ST nas derivações laterais (D1, aVL, V5–V6), sugestivo de lesão isquêmica transmural lateral.',
+  infra:       'Infradesnivelamento difuso do segmento ST, sugestivo de lesão subendocárdica ou isquemia.',
+  infra_lat:   'Infradesnivelamento do segmento ST nas derivações laterais.',
+  inv_t_ant:   'Inversão da onda T nas derivações anteriores (V1–V4), sugestiva de isquemia ou repolarização anormal.',
+  inv_t_lat:   'Inversão da onda T nas derivações laterais.',
+  inv_t_inf:   'Inversão da onda T nas derivações inferiores.',
+  q_ant:       'Ondas Q patológicas nas derivações anteriores, compatíveis com sequela de infarto anterior estabelecido.',
+  q_inf:       'Ondas Q patológicas nas derivações inferiores, compatíveis com sequela de infarto inferior estabelecido.',
+  alter_inesp: 'Alterações inespecíficas da repolarização ventricular.',
+  // AV
+  bav1:        'Bloqueio atrioventricular de 1º grau (PR > 200 ms).',
+  bav2_1:      'Bloqueio atrioventricular de 2º grau Mobitz I (Wenckebach) — prolongamento progressivo do PR até bloqueio de onda P.',
+  bav2_2:      'Bloqueio atrioventricular de 2º grau Mobitz II — bloqueio súbito de onda P sem prolongamento prévio do PR. Risco de progressão para BAV total.',
+  bav3:        'Bloqueio atrioventricular total (3º grau) — dissociação atrioventricular completa. Avaliação para marca-passo definitivo indicada.',
+  pr_curto:    'Intervalo PR curto (< 120 ms).',
+  // OUTROS
+  qtc_longo:   'QTc prolongado — risco aumentado de arritmias ventriculares. Revisar medicamentos e eletrólitos.',
+  baixa_volt:  'Baixa voltagem (QRS < 5 mm nas derivações dos membros e < 10 mm nas precordiais) — considerar derrame pericárdico, hipotireoidismo ou cardiomiopatia infiltrativa.',
+  eixo_esq:    'Desvio do eixo elétrico para a esquerda.',
+  eixo_dir:    'Desvio do eixo elétrico para a direita.',
+  artefato:    'Presença de artefatos de movimento na aquisição do traçado.',
+  brugada:     'Padrão eletrocardiográfico tipo Brugada — avaliação especializada e estudo eletrofisiológico recomendados.',
+  digitalis:   'Alterações sugestivas de efeito digitálico (scooping do ST).',
+  hiperkale:   'Padrão eletrocardiográfico sugestivo de hipercalemia — considerar dosar potássio sérico imediatamente.',
+  hipokale:    'Padrão sugestivo de hipocalemia — ondas U proeminentes, considerar reposição.',
+  pericardite: 'Supradesnivelamento côncavo e difuso do segmento ST, compatível com padrão de pericardite aguda.',
+};
+
+const ECG_NORMAL_LAUDO = 'Eletrocardiograma em ritmo sinusal, normofrequente. Eixo elétrico no plano frontal dentro dos limites da normalidade. Intervalos PR, QRS e QTc dentro dos limites da normalidade. Ausência de alterações primárias ou secundárias da repolarização ventricular. Sem sinais de sobrecarga ou hipertrofia de câmaras. ECG dentro dos limites da normalidade.';
+
+let ecgSelectedKeys = new Set();
+let ecgCustomPhrases = [];
+
+function ecgSetNormal() {
+  ecgSelectedKeys.clear();
+  ecgCustomPhrases = [];
+  document.querySelectorAll('.ecg-chip.active').forEach(c => c.classList.remove('active'));
+  document.getElementById('f_ecg').value = ECG_NORMAL_LAUDO;
+}
+
+function ecgClear() {
+  ecgSelectedKeys.clear();
+  ecgCustomPhrases = [];
+  document.querySelectorAll('.ecg-chip.active').forEach(c => c.classList.remove('active'));
+  document.getElementById('f_ecg').value = '';
+}
+
+function ecgToggleChip(btn) {
+  const key = btn.dataset.key;
+  if (ecgSelectedKeys.has(key)) {
+    ecgSelectedKeys.delete(key);
+    btn.classList.remove('active');
+  } else {
+    ecgSelectedKeys.add(key);
+    btn.classList.add('active');
+  }
+  ecgBuildLaudo();
+}
+
+function ecgAddCustom() {
+  const inp = document.getElementById('ecgCustomText');
+  const txt = inp.value.trim();
+  if (!txt) { showToast('Digite uma alteração para acrescentar.'); return; }
+  ecgCustomPhrases.push(txt);
+  inp.value = '';
+  ecgBuildLaudo();
+  showToast('Alteração adicionada ao laudo.');
+}
+
+function ecgBuildLaudo() {
+  if (ecgSelectedKeys.size === 0 && ecgCustomPhrases.length === 0) {
+    document.getElementById('f_ecg').value = '';
+    return;
+  }
+
+  const parts = [];
+
+  // Order: ritmo → bloqueios → sobrecargas → isquemia → AV → outros → custom
+  const keyOrder = ['sinusal','sinusal_taqui','sinusal_bradi','fa','flutter','tsv','tvns','marcopasso','ectv','ectsv',
+    'brd','bre','brdi','hbae','hbpe','bifasci','wpw',
+    'sae','sad','sve','svd','bive',
+    'supra_ant','supra_inf','supra_lat','infra','infra_lat','inv_t_ant','inv_t_lat','inv_t_inf','q_ant','q_inf','alter_inesp',
+    'bav1','bav2_1','bav2_2','bav3','pr_curto',
+    'qtc_longo','baixa_volt','eixo_esq','eixo_dir','artefato','brugada','digitalis','hiperkale','hipokale','pericardite'];
+
+  keyOrder.forEach(k => {
+    if (ecgSelectedKeys.has(k) && ECG_ACHADOS[k]) parts.push(ECG_ACHADOS[k]);
+  });
+  ecgCustomPhrases.forEach(p => parts.push(p.endsWith('.') ? p : p + '.'));
+
+  document.getElementById('f_ecg').value = parts.join(' ');
+}
+
+function ecgCopyLaudo(btn) {
+  const txt = document.getElementById('f_ecg').value;
+  if (!txt) { showToast('Laudo vazio.'); return; }
+  navigator.clipboard.writeText(txt).then(() => {
+    btn.textContent = '✓ Copiado!';
+    setTimeout(() => {
+      btn.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copiar';
+    }, 2000);
+  });
+}
+</script>
+
 </body>
 </html>
